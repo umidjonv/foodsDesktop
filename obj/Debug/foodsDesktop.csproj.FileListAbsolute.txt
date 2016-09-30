@@ -7,3 +7,13 @@ c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\o
 c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.csproj.GenerateResource.Cache
 c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.exe
 c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.pdb
+E:\projects\foodsDesktop\bin\Debug\foodsDesktop.exe.config
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.exe
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.pdb
+E:\projects\foodsDesktop\bin\Debug\foodsDesktop.exe
+E:\projects\foodsDesktop\bin\Debug\foodsDesktop.pdb
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.csprojResolveAssemblyReference.cache
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.LoginForm.resources
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.Properties.Resources.resources
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.csproj.GenerateResource.Cache
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.KassaForm.resources

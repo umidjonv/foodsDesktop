@@ -31,12 +31,19 @@ namespace foodsDesktop
         {
             DataTable table =  DBclass.DS.Tables["employee"];
             string hash = CalculateMD5Hash(tbxPass.Text);
-            DataRow[] rows = table.Select("login='"+tbxLogin.Text+"' and password = '"+ tbxPass.Text+"'");
+            DataRow[] rows = table.Select("login='"+tbxLogin.Text+"'");
             if (rows.Length != 0)
             {
-                MessageBox.Show("OK");
+                string pas = rows[0]["password"].ToString();
+                if (pas == hash)
+                {
+                    Program.window_type = 2;
+                    this.Close();
+                    return;
+                }
+
             }
-            else { MessageBox.Show("Ошибка входа...", "Логин или пароль не правильный", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            MessageBox.Show("Логин или пароль не правильный", "Ошибка входа...", MessageBoxButtons.OK, MessageBoxIcon.Error);
             
         }
         public string CalculateMD5Hash(string input)
@@ -52,7 +59,7 @@ namespace foodsDesktop
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < hash.Length; i++)
             {
-                sb.Append(hash[i].ToString("X2"));
+                sb.Append(hash[i].ToString("x2"));
             }
             return sb.ToString();
         }
