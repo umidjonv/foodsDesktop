@@ -1,0 +1,9 @@
+c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\bin\Debug\foodsDesktop.exe.config
+c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\bin\Debug\foodsDesktop.exe
+c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\bin\Debug\foodsDesktop.pdb
+c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.csprojResolveAssemblyReference.cache
+c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.LoginForm.resources
+c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.Properties.Resources.resources
+c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.csproj.GenerateResource.Cache
+c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.exe
+c:\users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.pdb
