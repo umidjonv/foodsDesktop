@@ -24,8 +24,18 @@ namespace foodsDesktop
             //tbxLogin.Location = new Point(w / 2 - 175, tbxLogin.Location.Y);
             //tbxPass.Location = new Point(w / 2 - 175, tbxPass.Location.Y);
             //btnLogin.Location = new Point(w / 2 - 175, btnLogin.Location.Y);
-            DBclass DB = new Classes.DBclass("employee");
+            DBclass DB = new Classes.DBclass("dishtype");
+            DataSet ds = DBclass.DS;
+            tabControl1.Controls.Clear();
+            foreach (DataRow dr in ds.Tables["dishtype"].Rows)
+            {
+                TabPage page = new TabPage(dr["name"].ToString());
+                tabControl1.Controls.Add(page);
+                
+            }
         }
+
+
 
         
     }
