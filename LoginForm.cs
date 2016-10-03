@@ -64,5 +64,20 @@ namespace foodsDesktop
             return sb.ToString();
         }
 
+        private void tbxPass_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void tbxPass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin_Click(null, null);
+ 
+            }
+
+        }
+
     }
 }

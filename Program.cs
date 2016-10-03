@@ -18,7 +18,7 @@ namespace foodsDesktop
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new KassaForm());
             switch (window_type)
             {
                 case 2:

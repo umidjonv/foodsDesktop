@@ -67,6 +67,8 @@
             this.tbxPass.PasswordChar = '*';
             this.tbxPass.Size = new System.Drawing.Size(350, 34);
             this.tbxPass.TabIndex = 2;
+            this.tbxPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxPass_KeyDown);
+            this.tbxPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxPass_KeyPress);
             // 
             // label1
             // 
