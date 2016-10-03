@@ -18,11 +18,11 @@ namespace foodsDesktop
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new KassaForm());
+            Application.Run(new ZakazForm());
             switch (window_type)
             {
                 case 2:
-                    Application.Run(new KassaForm());
+                    Application.Run(new ZakazForm());
                     break;
             }
         }
