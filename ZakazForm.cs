@@ -132,7 +132,7 @@ namespace foodsDesktop
                     i = 1;
                     tablePanelDishes.RowCount++;
                     tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
-                    tablePanelDishes.AutoScroll = true;
+                    
                 }
                 PanelExtend panel = new PanelExtend(dr["dishname"].ToString(), "0");
                 tablePanelDishes.Controls.Add(panel);
