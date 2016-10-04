@@ -15,15 +15,15 @@ namespace foodsDesktop.Classes
 
         public static DataSet DS { get; set; }
 
-        public DBclass()
-        {
-            connection = new MySqlConnection("server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True");
-            string[] tables = { "employee", "dishes", "halfstaff", "products" };
-            if (DS == null)
-                DS = new DataSet();
-            foreach(string tableName in tables)
-            Fill(tableName);
-        }
+        //public DBclass()
+        //{
+        //    connection = new MySqlConnection("server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True");
+        //    string[] tables = { "employee", "dishes", "halfstaff", "products" };
+        //    if (DS == null)
+        //        DS = new DataSet();
+        //    foreach(string tableName in tables)
+        //    Fill(tableName);
+        //}
         public DBclass(string name)
         {
             connection = new MySqlConnection("server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True");
@@ -40,6 +40,24 @@ namespace foodsDesktop.Classes
 
             
         }
+        public void FillMenu_Dishes() 
+        {
+            string select_text = "select d.type_id, d.name, ds.name as dishname "+ 
+                                "from dishtype as d inner join menu as m "+
+                                "on d.type_id = m.type_id "+
+                                "inner join dishes as ds "+
+                                "on m.just_id = ds.dish_id";
+            adapter = new MySqlDataAdapter(select_text, connection);
+            adapter.Fill(DS, "menu_dishes_v");
+         }
+
+        public DataRow[] GetDishesRow(int id)
+        {
+            DataRow[] rows = DS.Tables["menu_dishes_v"].Select("type_id = " + id);
+            return rows;
+ 
+        }
+        
         
         
     }

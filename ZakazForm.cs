@@ -24,7 +24,7 @@ namespace foodsDesktop
             //tbxLogin.Location = new Point(w / 2 - 175, tbxLogin.Location.Y);
             //tbxPass.Location = new Point(w / 2 - 175, tbxPass.Location.Y);
             //btnLogin.Location = new Point(w / 2 - 175, btnLogin.Location.Y);
-            DBclass DB = new Classes.DBclass("dishtype");
+            DB = new Classes.DBclass("dishtype");
             DataSet ds = DBclass.DS;
             
             
@@ -65,8 +65,9 @@ namespace foodsDesktop
                 //btn.AutoSize = true;
                 btn.Margin = new System.Windows.Forms.Padding(0);
                 btn.Text = dr["name"].ToString();
+                btn.Tag = dr["type_id"];
                 btn.Height = 100;
-
+                btn.Click += ClickMenu;
                 using (Graphics gr = this.CreateGraphics())
                 {
                     SizeF size = gr.MeasureString(dr["name"].ToString(), this.Font);
@@ -93,8 +94,13 @@ namespace foodsDesktop
 
 
             }
-        }
+            // Generate view for all dishes with their categories
+            DB.FillMenu_Dishes();
 
+            
+        }
+        DBclass DB;
+        int dish_col_count;
         private void btnLeftRight_Click(object sender, EventArgs e)
         {
             if ((sender as Button).Name == "btnLeft")
@@ -106,12 +112,42 @@ namespace foodsDesktop
                 tabCMenu.SelectedIndex = tabCMenu.TabPages.Count >= tabCMenu.SelectedIndex + 1 ? tabCMenu.SelectedIndex + 1 : tabCMenu.SelectedIndex;  
             }
         }
-
-        private void KassaForm_Load(object sender, EventArgs e)
+        private void ClickMenu(object sender, EventArgs e)
         {
+            int id = Convert.ToInt32((sender as Button).Tag);
+            DataRow[] drDishes = DB.GetDishesRow(id);
 
+            // TableLayoutPanel calculate size
+
+            int i = 1;
+            foreach (DataRow dr in drDishes)
+            {
+                if (i >= dish_col_count)
+                {
+                    i = 1;
+                    tablePanelDishes.RowCount++;
+                    
+                }
+                PanelExtend panel = new PanelExtend(dr["dishname"].ToString(), "0");
+                tablePanelDishes.Controls.Add(panel);
+                i++;
+ 
+            }
+            //PanelExtend panel = new PanelExtend("Салат Цезарь", "7 000");
+            //tablePanelDishes.Controls.Add(panel);
         }
 
+        private void ZakazForm_Load(object sender, EventArgs e)
+        {
+            tablePanelDishes.Refresh();
+            tablePanelDishes.Width = panelDishes.Width;
+            tablePanelDishes.Height = panelDishes.Height;
+            dish_col_count = tablePanelDishes.Width / 170;
+        }
+
+        
+
+        
 
 
         

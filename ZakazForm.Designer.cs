@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panelDishes = new System.Windows.Forms.Panel();
+            this.tablePanelDishes = new System.Windows.Forms.TableLayoutPanel();
             this.panelTab = new System.Windows.Forms.Panel();
             this.tabCMenu = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -39,6 +41,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panelDishes.SuspendLayout();
             this.panelTab.SuspendLayout();
             this.tabCMenu.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +54,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.panelDishes);
             this.splitContainer1.Panel2.Controls.Add(this.panelTab);
             this.splitContainer1.Panel2.Controls.Add(this.btnLeft);
             this.splitContainer1.Panel2.Controls.Add(this.btnRight);
@@ -58,6 +62,39 @@
             this.splitContainer1.Size = new System.Drawing.Size(1418, 721);
             this.splitContainer1.SplitterDistance = 350;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // panelDishes
+            // 
+            this.panelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelDishes.AutoScroll = true;
+            this.panelDishes.Controls.Add(this.tablePanelDishes);
+            this.panelDishes.Location = new System.Drawing.Point(4, 164);
+            this.panelDishes.Name = "panelDishes";
+            this.panelDishes.Size = new System.Drawing.Size(1048, 557);
+            this.panelDishes.TabIndex = 4;
+            // 
+            // tablePanelDishes
+            // 
+            this.tablePanelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tablePanelDishes.ColumnCount = 5;
+            this.tablePanelDishes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tablePanelDishes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tablePanelDishes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tablePanelDishes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tablePanelDishes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tablePanelDishes.Location = new System.Drawing.Point(3, 61);
+            this.tablePanelDishes.Name = "tablePanelDishes";
+            this.tablePanelDishes.RowCount = 2;
+            this.tablePanelDishes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tablePanelDishes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tablePanelDishes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tablePanelDishes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tablePanelDishes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tablePanelDishes.Size = new System.Drawing.Size(1040, 493);
+            this.tablePanelDishes.TabIndex = 3;
             // 
             // panelTab
             // 
@@ -131,7 +168,7 @@
             this.btnSearch.Text = "Поиск";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
-            // KassaForm
+            // ZakazForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -139,13 +176,14 @@
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("PT Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "KassaForm";
+            this.Name = "ZakazForm";
             this.Text = "Касса";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.KassaForm_Load);
+            this.Load += new System.EventHandler(this.ZakazForm_Load);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panelDishes.ResumeLayout(false);
             this.panelTab.ResumeLayout(false);
             this.tabCMenu.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -162,6 +200,8 @@
         private System.Windows.Forms.TabControl tabCMenu;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TableLayoutPanel tablePanelDishes;
+        private System.Windows.Forms.Panel panelDishes;
 
     }
 }
