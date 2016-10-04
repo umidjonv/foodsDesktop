@@ -13,6 +13,8 @@ namespace foodsDesktop.Classes
         public PanelExtend()
         {
             InitializeComponents();
+            this.Refresh();
+            lbl.Location = new System.Drawing.Point(this.Width - 110, this.Height / 3 * 2);
         }
         public PanelExtend(string btnText, string labelText)
         {
@@ -21,7 +23,7 @@ namespace foodsDesktop.Classes
             btn.Text = btnText;
             lbl.Text = labelText;
             this.Refresh();
-            lbl.Location = new System.Drawing.Point(this.Width-100, this.Height / 3 * 2);
+            lbl.Location = new System.Drawing.Point(this.Width-110, this.Height / 3 * 2);
 
         }
         private void InitializeComponents()

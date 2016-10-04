@@ -114,6 +114,11 @@ namespace foodsDesktop
         }
         private void ClickMenu(object sender, EventArgs e)
         {
+            tablePanelDishes.Height = panelDishes.Height;
+            tablePanelDishes.RowCount = 1;
+            tablePanelDishes.Controls.Clear();
+            tablePanelDishes.RowStyles.Clear();
+            tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
             int id = Convert.ToInt32((sender as Button).Tag);
             DataRow[] drDishes = DB.GetDishesRow(id);
 
@@ -122,11 +127,12 @@ namespace foodsDesktop
             int i = 1;
             foreach (DataRow dr in drDishes)
             {
-                if (i >= dish_col_count)
+                if (i > dish_col_count)
                 {
                     i = 1;
                     tablePanelDishes.RowCount++;
-                    
+                    tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
+                    tablePanelDishes.AutoScroll = true;
                 }
                 PanelExtend panel = new PanelExtend(dr["dishname"].ToString(), "0");
                 tablePanelDishes.Controls.Add(panel);
@@ -141,7 +147,7 @@ namespace foodsDesktop
         {
             tablePanelDishes.Refresh();
             tablePanelDishes.Width = panelDishes.Width;
-            tablePanelDishes.Height = panelDishes.Height;
+            
             dish_col_count = tablePanelDishes.Width / 170;
         }
 
