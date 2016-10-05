@@ -18,13 +18,32 @@ namespace foodsDesktop
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //There must be LoginForm
             Application.Run(new ZakazForm());
-            switch (window_type)
+
+            while (window_type != 0)
             {
-                case 2:
-                    Application.Run(new ZakazForm());
-                    break;
+                switch (window_type)
+                {
+                    case 1:
+                        Application.Run(new TableForm());
+                        window_type = 0;
+                        break;
+                    case 2:
+                        Application.Run(new ZakazForm());
+                        window_type = 0;
+                        break;
+                    case 0:
+                        break;
+                }
             }
         }
+    }
+    static class UserValues
+    {
+        public static string CurrentUser;
+        public static int CurrentUserID;
+        public static int CurrentTable;
+        
     }
 }

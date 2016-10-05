@@ -37,7 +37,8 @@ namespace foodsDesktop
                 string pas = rows[0]["password"].ToString();
                 if (pas == hash)
                 {
-                    Program.window_type = 2;
+                    Program.window_type = 1;
+                    UserValues.CurrentUserID = Convert.ToInt32(rows[0]["employee_id"]);
                     this.Close();
                     return;
                 }

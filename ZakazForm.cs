@@ -157,9 +157,7 @@ namespace foodsDesktop
         }
         private void Dish_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-
-            dgvSchet.Rows.Add();
+            
             
         }
         
