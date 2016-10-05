@@ -42,7 +42,7 @@ namespace foodsDesktop.Classes
         }
         public void FillMenu_Dishes() 
         {
-            string select_text = "select d.type_id, d.name, ds.name as dishname "+ 
+            string select_text = "select ds.dish_id, d.type_id, d.name, ds.name as dishname, ds.price "+ 
                                 "from dishtype as d inner join menu as m "+
                                 "on d.type_id = m.type_id "+
                                 "inner join dishes as ds "+

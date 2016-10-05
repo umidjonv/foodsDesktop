@@ -114,11 +114,11 @@ namespace foodsDesktop
         }
         private void ClickMenu(object sender, EventArgs e)
         {
-            tablePanelDishes.Height = panelDishes.Height;
-            tablePanelDishes.RowCount = 1;
+            //tablePanelDishes.Height = panelDishes.Height;
+            //tablePanelDishes.RowCount = 1;
             tablePanelDishes.Controls.Clear();
-            tablePanelDishes.RowStyles.Clear();
-            tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
+            //tablePanelDishes.RowStyles.Clear();
+            //tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
             int id = Convert.ToInt32((sender as Button).Tag);
             DataRow[] drDishes = DB.GetDishesRow(id);
 
@@ -127,18 +127,23 @@ namespace foodsDesktop
             int i = 1;
             foreach (DataRow dr in drDishes)
             {
-                if (i > dish_col_count)
-                {
-                    i = 1;
-                    tablePanelDishes.RowCount++;
-                    tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
+                //if (i > dish_col_count)
+                //{
+                //    i = 1;
+                //    //tablePanelDishes.RowCount++;
+                //    //tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
                     
-                }
-                PanelExtend panel = new PanelExtend(dr["dishname"].ToString(), "0");
+                //}
+                PanelExtend panel = new PanelExtend((int)dr["dish_id"], dr["dishname"].ToString(), dr["price"].ToString());
+                panel.Dock = DockStyle.None;
+                panel.Width = 170;
+                panel.Height = 170;
+                panel.PanelButton.Click+=Dish_Click;
                 tablePanelDishes.Controls.Add(panel);
                 i++;
  
             }
+            //tablePanelDishes.Height += 100;
             //PanelExtend panel = new PanelExtend("Салат Цезарь", "7 000");
             //tablePanelDishes.Controls.Add(panel);
         }
@@ -147,10 +152,16 @@ namespace foodsDesktop
         {
             tablePanelDishes.Refresh();
             tablePanelDishes.Width = panelDishes.Width;
-            
+            tablePanelDishes.BackColor = System.Drawing.Color.Transparent;
             dish_col_count = tablePanelDishes.Width / 170;
         }
+        private void Dish_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
 
+            dgvSchet.Rows.Add();
+            
+        }
         
 
         

@@ -16,9 +16,9 @@ namespace foodsDesktop.Classes
             this.Refresh();
             lbl.Location = new System.Drawing.Point(this.Width - 110, this.Height / 3 * 2);
         }
-        public PanelExtend(string btnText, string labelText)
+        public PanelExtend(int id, string btnText, string labelText)
         {
-
+            this.Tag = id;
             InitializeComponents(); 
             btn.Text = btnText;
             lbl.Text = labelText;
@@ -29,7 +29,7 @@ namespace foodsDesktop.Classes
         private void InitializeComponents()
         {
             this.Dock = DockStyle.Fill;
-            this.BackColor = System.Drawing.Color.Cornsilk;
+            this.BackColor = System.Drawing.Color.FromArgb(178, 132, 16);  
             btn = new Button();
             
             lbl = new Label();
@@ -37,8 +37,9 @@ namespace foodsDesktop.Classes
             btn.Dock = DockStyle.Top;
             btn.Width = 100;
             btn.Height = 130;
-            btn.BackColor = System.Drawing.Color.MediumSpringGreen;  
+            btn.BackColor = System.Drawing.Color.FromArgb(35, 255, 177);
             lbl.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            lbl.ForeColor = System.Drawing.Color.White;
             //lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
 
             this.Controls.Add(btn);
