@@ -63,6 +63,10 @@
     <Compile Include="Classes\PanelExtend.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DB\Expense.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DB\Orders.cs" />
     <Compile Include="TableForm.cs">
       <SubType>Form</SubType>
     </Compile>

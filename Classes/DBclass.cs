@@ -12,7 +12,7 @@ namespace foodsDesktop.Classes
     {
         MySqlConnection connection;
         MySqlDataAdapter adapter;
-
+        public static DB.ExpenseDB ExpenseDB{ get; set; }
         public static DataSet DS { get; set; }
 
         //public DBclass()
@@ -57,7 +57,34 @@ namespace foodsDesktop.Classes
             return rows;
  
         }
-        
+
+        private void CreateExpenseTable()
+        {
+            DB.ExpenseDB exp = new DB.ExpenseDB(connection);
+            DS.Tables.Add(exp.expenseTable);
+            
+            //table.Columns.Add(new DataColumn(""))
+ 
+        }
+        /// <summary>
+        /// Update insert delete expense
+        /// </summary>
+        private void UIDExpense()
+        {
+            DB.ExpenseDB exp = new DB.ExpenseDB(connection);
+            exp.expenseTable = (DB.ExpenseDB.Expense) DS.Tables["expense"];
+            exp.expenseAdapter.Update(exp.expenseTable);
+        }
+
+        /// <summary>
+        /// Update insert delete orders
+        /// </summary>
+        private void UIDOrders()
+        {
+            DB.OrdersDB ord = new DB.OrdersDB(connection);
+            ord.OrdersTable = (DB.OrdersDB.Orders)DS.Tables["orders"];
+            ord.OrdersAdapter.Update(ord.OrdersTable);
+        }
         
         
     }

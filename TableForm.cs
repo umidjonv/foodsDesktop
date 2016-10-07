@@ -16,13 +16,13 @@ namespace foodsDesktop
         public TableForm()
         {
             InitializeComponent();
-            db = new DBclass("table");
+            db = new DBclass("tables");
             Tables();
         }
         DBclass db;
         private void Tables()
         {
-            DataTable tables = DBclass.DS.Tables["table"];
+            DataTable tables = DBclass.DS.Tables["tables"];
             foreach (DataRow dr in tables.Rows)
             {
                 Button btn = new Button();
