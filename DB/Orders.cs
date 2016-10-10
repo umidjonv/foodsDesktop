@@ -27,51 +27,58 @@ namespace foodsDesktop.DB
                 this.Columns.Add(new DataColumn("deleted", typeof(int)));
                 this.Columns.Add(new DataColumn("notificate", typeof(int)));
 
+                this.Columns[0].AutoIncrement = true;
+                this.Columns[0].AutoIncrementSeed = 1;
+                this.Columns[0].AutoIncrementStep = 1;
             }
 
 
         }
-        public OrdersDB(MySqlConnection connection)
+        public OrdersDB(MySqlConnection db_connection)
         {
             command = new MySqlCommand();
-            CreateAdapter(connection);
+            connection = db_connection;
+                
+            CreateAdapter();
             OrdersTable = new Orders();
         }
         public Orders OrdersTable;
         MySqlCommand command;
+        MySqlConnection connection;
         public MySqlDataAdapter OrdersAdapter;
         private MySqlCommand CreateCommand(MySqlCommand command, string type)
         {
             string commandText = "";
-            command.Parameters.Add(new MySqlParameter("orderID", MySqlDbType.Int32));
-            command.Parameters.Add(new MySqlParameter("expense_id", MySqlDbType.Int32));
-            command.Parameters.Add(new MySqlParameter("just_id", MySqlDbType.Int32));
-            command.Parameters.Add(new MySqlParameter("type", MySqlDbType.Int32));
-            command.Parameters.Add(new MySqlParameter("count", MySqlDbType.Int32));
-            command.Parameters.Add(new MySqlParameter("status", MySqlDbType.Int32));
-            command.Parameters.Add(new MySqlParameter("refuse", MySqlDbType.Int32));
-            command.Parameters.Add(new MySqlParameter("deleted", MySqlDbType.Int32));
-            command.Parameters.Add(new MySqlParameter("notificate", MySqlDbType.Int32));
+            command.Parameters.Add(new MySqlParameter("@orderID", MySqlDbType.Int32, 0, "order_id"));
+            command.Parameters.Add(new MySqlParameter("@expense_id", MySqlDbType.Int32, 0, "expense_id"));
+            command.Parameters.Add(new MySqlParameter("@just_id", MySqlDbType.Int32, 0, "just_id"));
+            command.Parameters.Add(new MySqlParameter("@type", MySqlDbType.Int32, 0, "type"));
+            command.Parameters.Add(new MySqlParameter("@count", MySqlDbType.Int32, 0, "count"));
+            command.Parameters.Add(new MySqlParameter("@status", MySqlDbType.Int32, 0, "status"));
+            command.Parameters.Add(new MySqlParameter("@refuse", MySqlDbType.Int32, 0, "refuse"));
+            command.Parameters.Add(new MySqlParameter("@deleted", MySqlDbType.Int32, 0, "deleted"));
+            command.Parameters.Add(new MySqlParameter("@notificate", MySqlDbType.Int32, 0, "notificate"));
 
             switch (type)
             {
                 case "select":
-                    commandText = "select order_id, expense_id, just_id, type, count, status, refuse, deleted, notificate from orders";
+                    commandText = "select order_id, expense_id, just_id, `type`, `count`, `status`, refuse, deleted, notificate from orders";
                     break;
                 case "update":
-                    commandText = "update orders set expense_id= @expense_id, just_id=@just_id, type=@type, count=@count, status=@status, refuse=@refuse, deleted=@deleted, notificate=@notificate where order_id=@orderID";
+                    commandText = "update orders set expense_id= @expense_id, just_id=@just_id, `type`=@type, `count`=@count, `status`=@status, refuse=@refuse, deleted=@deleted, notificate=@notificate where order_id=@orderID";
                     break;
                 case "insert":
-                    commandText = "insert into orders (expense_id, just_id, type, count, status, refuse, deleted, notificate) values (@expense_id, @just_id, @type, @count, @status, @refuse, @deleted, @notificate)";
+                    commandText = "insert into orders (expense_id, just_id, `type`, `count`, `status`, refuse, deleted, notificate) values (@expense_id, @just_id, @type, @count, @status, @refuse, @deleted, @notificate)";
                     break;
                 case "delete":
                     commandText = "delete from orders where order_id = @orderID";
                     break;
             }
             command.CommandText = commandText;
+            command.Connection = connection;
             return command;
         }
-        private void CreateAdapter(MySqlConnection connection)
+        private void CreateAdapter()
         {
             OrdersAdapter = new MySqlDataAdapter();
             OrdersAdapter.SelectCommand = CreateCommand(new MySqlCommand(), "select");

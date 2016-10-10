@@ -58,7 +58,7 @@ namespace foodsDesktop.Classes
  
         }
 
-        private void CreateExpenseTable()
+        public void CreateExpenseTable()
         {
             DB.ExpenseDB exp = new DB.ExpenseDB(connection);
             DS.Tables.Add(exp.expenseTable);
@@ -66,20 +66,41 @@ namespace foodsDesktop.Classes
             //table.Columns.Add(new DataColumn(""))
  
         }
+        public void CreateOrdersTable()
+        {
+            DB.OrdersDB ord = new DB.OrdersDB(connection);
+            DS.Tables.Add(ord.OrdersTable);
+
+            //table.Columns.Add(new DataColumn(""))
+
+        }
         /// <summary>
         /// Update insert delete expense
         /// </summary>
-        private void UIDExpense()
+        public void UIDExpense()
         {
             DB.ExpenseDB exp = new DB.ExpenseDB(connection);
             exp.expenseTable = (DB.ExpenseDB.Expense) DS.Tables["expense"];
             exp.expenseAdapter.Update(exp.expenseTable);
+            MySqlCommand command = new MySqlCommand();
+            command.Connection = exp.expenseAdapter.InsertCommand.Connection;
+            command.CommandText = "select max(expense_id) from expense";
+            command.Connection.Open();
+            int id = (int)command.ExecuteScalar();
+            DataTable orders =  DS.Tables["orders"];
+            DataRow[] drOrders = orders.Select("expense_id=0");
+            foreach(DataRow dr in drOrders)
+            {
+                dr["expense_id"] = id;
+            }
+            if (command.Connection.State == ConnectionState.Open)
+                command.Connection.Close();
         }
 
         /// <summary>
         /// Update insert delete orders
         /// </summary>
-        private void UIDOrders()
+        public void UIDOrders()
         {
             DB.OrdersDB ord = new DB.OrdersDB(connection);
             ord.OrdersTable = (DB.OrdersDB.Orders)DS.Tables["orders"];

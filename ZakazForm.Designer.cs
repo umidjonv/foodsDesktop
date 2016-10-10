@@ -29,7 +29,16 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnSchet = new System.Windows.Forms.Button();
+            this.gbxStolNumber = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSumma = new System.Windows.Forms.Label();
+            this.lblUser = new System.Windows.Forms.Label();
+            this.gbxSchet = new System.Windows.Forms.GroupBox();
+            this.dgvSchet = new System.Windows.Forms.DataGridView();
             this.panelDishes = new System.Windows.Forms.Panel();
+            this.tablePanelDishes = new System.Windows.Forms.FlowLayoutPanel();
             this.panelTab = new System.Windows.Forms.Panel();
             this.tabCMenu = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -37,22 +46,16 @@
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.tablePanelDishes = new System.Windows.Forms.FlowLayoutPanel();
-            this.gbxSchet = new System.Windows.Forms.GroupBox();
-            this.dgvSchet = new System.Windows.Forms.DataGridView();
-            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameTovar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.gbxStolNumber.SuspendLayout();
+            this.gbxSchet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSchet)).BeginInit();
             this.panelDishes.SuspendLayout();
             this.panelTab.SuspendLayout();
             this.tabCMenu.SuspendLayout();
-            this.gbxSchet.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSchet)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -63,6 +66,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnSchet);
+            this.splitContainer1.Panel1.Controls.Add(this.gbxStolNumber);
             this.splitContainer1.Panel1.Controls.Add(this.gbxSchet);
             this.splitContainer1.Panel1.Font = new System.Drawing.Font("PT Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             // 
@@ -77,6 +82,89 @@
             this.splitContainer1.SplitterDistance = 350;
             this.splitContainer1.TabIndex = 0;
             // 
+            // btnSchet
+            // 
+            this.btnSchet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSchet.Location = new System.Drawing.Point(12, 660);
+            this.btnSchet.Name = "btnSchet";
+            this.btnSchet.Size = new System.Drawing.Size(329, 41);
+            this.btnSchet.TabIndex = 2;
+            this.btnSchet.Text = "Оформить счёт";
+            this.btnSchet.UseVisualStyleBackColor = true;
+            this.btnSchet.Click += new System.EventHandler(this.btnSchet_Click);
+            // 
+            // gbxStolNumber
+            // 
+            this.gbxStolNumber.Controls.Add(this.label2);
+            this.gbxStolNumber.Controls.Add(this.label1);
+            this.gbxStolNumber.Controls.Add(this.lblSumma);
+            this.gbxStolNumber.Controls.Add(this.lblUser);
+            this.gbxStolNumber.Location = new System.Drawing.Point(12, 12);
+            this.gbxStolNumber.Name = "gbxStolNumber";
+            this.gbxStolNumber.Size = new System.Drawing.Size(329, 127);
+            this.gbxStolNumber.TabIndex = 1;
+            this.gbxStolNumber.TabStop = false;
+            this.gbxStolNumber.Text = "Стол № ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 19);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Пользователь";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 19);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Сумма";
+            // 
+            // lblSumma
+            // 
+            this.lblSumma.AutoSize = true;
+            this.lblSumma.Location = new System.Drawing.Point(110, 66);
+            this.lblSumma.Name = "lblSumma";
+            this.lblSumma.Size = new System.Drawing.Size(16, 19);
+            this.lblSumma.TabIndex = 6;
+            this.lblSumma.Text = "0";
+            // 
+            // lblUser
+            // 
+            this.lblUser.AutoSize = true;
+            this.lblUser.Location = new System.Drawing.Point(110, 31);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(36, 19);
+            this.lblUser.TabIndex = 5;
+            this.lblUser.Text = "User";
+            // 
+            // gbxSchet
+            // 
+            this.gbxSchet.Controls.Add(this.dgvSchet);
+            this.gbxSchet.Location = new System.Drawing.Point(3, 145);
+            this.gbxSchet.Name = "gbxSchet";
+            this.gbxSchet.Size = new System.Drawing.Size(338, 525);
+            this.gbxSchet.TabIndex = 0;
+            this.gbxSchet.TabStop = false;
+            this.gbxSchet.Text = "Счёт";
+            // 
+            // dgvSchet
+            // 
+            this.dgvSchet.AllowUserToResizeColumns = false;
+            this.dgvSchet.AllowUserToResizeRows = false;
+            this.dgvSchet.BackgroundColor = System.Drawing.Color.PaleTurquoise;
+            this.dgvSchet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSchet.Location = new System.Drawing.Point(9, 33);
+            this.dgvSchet.Name = "dgvSchet";
+            this.dgvSchet.RowHeadersVisible = false;
+            this.dgvSchet.RowTemplate.Height = 24;
+            this.dgvSchet.Size = new System.Drawing.Size(329, 476);
+            this.dgvSchet.TabIndex = 0;
+            // 
             // panelDishes
             // 
             this.panelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -87,6 +175,18 @@
             this.panelDishes.Name = "panelDishes";
             this.panelDishes.Size = new System.Drawing.Size(1048, 557);
             this.panelDishes.TabIndex = 4;
+            // 
+            // tablePanelDishes
+            // 
+            this.tablePanelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tablePanelDishes.AutoScroll = true;
+            this.tablePanelDishes.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tablePanelDishes.Location = new System.Drawing.Point(6, 15);
+            this.tablePanelDishes.Name = "tablePanelDishes";
+            this.tablePanelDishes.Size = new System.Drawing.Size(1039, 475);
+            this.tablePanelDishes.TabIndex = 4;
             // 
             // panelTab
             // 
@@ -160,70 +260,6 @@
             this.btnSearch.Text = "Поиск";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
-            // tablePanelDishes
-            // 
-            this.tablePanelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tablePanelDishes.AutoScroll = true;
-            this.tablePanelDishes.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tablePanelDishes.Location = new System.Drawing.Point(6, 15);
-            this.tablePanelDishes.Name = "tablePanelDishes";
-            this.tablePanelDishes.Size = new System.Drawing.Size(1039, 475);
-            this.tablePanelDishes.TabIndex = 4;
-            // 
-            // gbxSchet
-            // 
-            this.gbxSchet.Controls.Add(this.dgvSchet);
-            this.gbxSchet.Location = new System.Drawing.Point(3, 145);
-            this.gbxSchet.Name = "gbxSchet";
-            this.gbxSchet.Size = new System.Drawing.Size(344, 525);
-            this.gbxSchet.TabIndex = 0;
-            this.gbxSchet.TabStop = false;
-            this.gbxSchet.Text = "Счёт";
-            // 
-            // dgvSchet
-            // 
-            this.dgvSchet.AllowUserToResizeColumns = false;
-            this.dgvSchet.AllowUserToResizeRows = false;
-            this.dgvSchet.BackgroundColor = System.Drawing.Color.PaleTurquoise;
-            this.dgvSchet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSchet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.number,
-            this.NameTovar,
-            this.count,
-            this.price});
-            this.dgvSchet.Location = new System.Drawing.Point(9, 33);
-            this.dgvSchet.Name = "dgvSchet";
-            this.dgvSchet.RowHeadersVisible = false;
-            this.dgvSchet.RowTemplate.Height = 24;
-            this.dgvSchet.Size = new System.Drawing.Size(329, 517);
-            this.dgvSchet.TabIndex = 0;
-            // 
-            // number
-            // 
-            this.number.HeaderText = "#";
-            this.number.Name = "number";
-            this.number.Width = 30;
-            // 
-            // NameTovar
-            // 
-            this.NameTovar.HeaderText = "Имя товара";
-            this.NameTovar.Name = "NameTovar";
-            this.NameTovar.Width = 200;
-            // 
-            // count
-            // 
-            this.count.HeaderText = "Количетство";
-            this.count.Name = "count";
-            this.count.Width = 30;
-            // 
-            // price
-            // 
-            this.price.HeaderText = "сумма";
-            this.price.Name = "price";
-            this.price.Width = 70;
-            // 
             // ZakazForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
@@ -241,11 +277,13 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.gbxStolNumber.ResumeLayout(false);
+            this.gbxStolNumber.PerformLayout();
+            this.gbxSchet.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSchet)).EndInit();
             this.panelDishes.ResumeLayout(false);
             this.panelTab.ResumeLayout(false);
             this.tabCMenu.ResumeLayout(false);
-            this.gbxSchet.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSchet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -264,10 +302,12 @@
         private System.Windows.Forms.FlowLayoutPanel tablePanelDishes;
         private System.Windows.Forms.GroupBox gbxSchet;
         private System.Windows.Forms.DataGridView dgvSchet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NameTovar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn count;
-        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.GroupBox gbxStolNumber;
+        private System.Windows.Forms.Label lblSumma;
+        private System.Windows.Forms.Label lblUser;
+        private System.Windows.Forms.Button btnSchet;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
 
     }
 }

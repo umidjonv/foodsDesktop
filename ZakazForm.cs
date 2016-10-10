@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
 using foodsDesktop.Classes;
+using foodsDesktop.DB;
+
 using System.Windows.Forms;
 
 namespace foodsDesktop
@@ -17,6 +19,18 @@ namespace foodsDesktop
         public ZakazForm()
         {
             InitializeComponent();
+            DataTable table = new DataTable();
+            table.Columns.Add("order_id", typeof(int));
+            table.Columns.Add("just_id", typeof(int));
+            table.Columns.Add("NameTovar");
+
+            table.Columns.Add("count", typeof(int));
+            table.Columns.Add("price", typeof(int));
+            table.Columns.Add("summaOne", typeof(decimal), "count*price");
+            table.Columns["order_id"].AutoIncrement = true;
+            table.Columns["order_id"].AutoIncrementSeed = 1;
+            table.Columns["order_id"].AutoIncrementStep = 1;
+            dgvSchet.DataSource = table;
             int w = this.Size.Width;
             int h = this.Size.Height;
             //label1.Location = new Point(w/2-175, label1.Location.Y);
@@ -154,10 +168,84 @@ namespace foodsDesktop
             tablePanelDishes.Width = panelDishes.Width;
             tablePanelDishes.BackColor = System.Drawing.Color.Transparent;
             dish_col_count = tablePanelDishes.Width / 170;
+            lblUser.Text = UserValues.CurrentUser;
+            gbxStolNumber.Text += UserValues.CurrentTable;
+
+            dgvSchet.Columns["just_id"].Visible = false;
+            dgvSchet.Columns["summaOne"].Visible = false;
+            dgvSchet.Columns["order_id"].Width = 30;
+            dgvSchet.Columns["NameTovar"].Width = 200;
+            dgvSchet.Columns["count"].Width = 30;
+            dgvSchet.Columns["price"].Width = 70;
+            dgvSchet.Columns["order_id"].HeaderText = "№";
+            dgvSchet.Columns["NameTovar"].HeaderText = "Наим.";
+            dgvSchet.Columns["count"].HeaderText = "Кол.";
+            dgvSchet.Columns["price"].HeaderText = "Цена";
+
+
+            var dtable = (DataTable)dgvSchet.DataSource;
+            var query = dtable.AsEnumerable().Sum(x => x.Field<decimal>("summaOne"));
+            lblSumma.Text = query.ToString();
+
+
         }
         private void Dish_Click(object sender, EventArgs e)
         {
             
+            Button eve = sender as Button;
+            int id = (int)eve.Parent.Tag;
+            DataTable table = dgvSchet.DataSource as DataTable;
+            DataRow[] drs = table.Select("just_id = " + id);
+            if (drs.Length != 0)
+            {
+                int count = (int)drs[0]["count"];
+                drs[0]["count"] = count + 1;
+            }
+            else
+            {
+                DataRow drNew = table.NewRow();
+                drNew["NameTovar"] = eve.Text;
+                drNew["just_id"] = id;
+                PanelExtend panel = eve.Parent as PanelExtend;
+                drNew["price"] = panel.PanelLabel.Text;
+                drNew["count"] = 1;
+                table.Rows.Add(drNew);
+            }
+            var dtable = (DataTable)dgvSchet.DataSource;
+            var query = dtable.AsEnumerable().Sum(x => x.Field<decimal>("summaOne"));
+            lblSumma.Text = query.ToString();
+            //orderRow["expense_id"] = id;
+            //orderRow["type"] = 2;
+            //DataGridViewRow dgvRow = new DataGridViewRow();
+            //dgvRow.Cells["NameTovar"].Value = eve.Text;
+            
+
+            //dgvRow.Cells["price"].Value = panel.PanelLabel.Text;
+            
+
+            
+            
+        }
+
+        private void btnSchet_Click(object sender, EventArgs e)
+        {
+            OrdersDB.Orders orders = (OrdersDB.Orders)DBclass.DS.Tables["orders"];
+            ExpenseDB.Expense exp = (ExpenseDB.Expense)DBclass.DS.Tables["expense"];
+            DataRow dr = exp.NewRow();
+            dr["order_date"] = DateTime.Now;
+            dr["employee_id"] = UserValues.CurrentUserID;
+            dr["table"] = UserValues.CurrentTable;
+            dr["status"] = 0;
+            dr["deleted"] = 0;
+
+            exp.Rows.Add(dr);
+
+            DB.UIDExpense();
+            //this.Columns.Add(new DataColumn("order_date", typeof(DateTime)));
+            //this.Columns.Add(new DataColumn("employee_id", typeof(int)));
+            //this.Columns.Add(new DataColumn("table", typeof(int)));
+            //this.Columns.Add(new DataColumn("status", typeof(int)));
+            //this.Columns.Add(new DataColumn("deleted", typeof(int)));
             
         }
         

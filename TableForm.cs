@@ -18,6 +18,8 @@ namespace foodsDesktop
             InitializeComponent();
             db = new DBclass("tables");
             Tables();
+            db.CreateExpenseTable();
+            db.CreateOrdersTable();
         }
         DBclass db;
         private void Tables()
