@@ -27,11 +27,11 @@ namespace foodsDesktop
                 {
                     case 1:
                         Application.Run(new TableForm());
-                        window_type = 0;
+                        if(window_type ==1) window_type=0;
                         break;
                     case 2:
                         Application.Run(new ZakazForm());
-                        window_type = 0;
+                        if (window_type == 2) window_type = 0;
                         break;
                     case 0:
                         break;

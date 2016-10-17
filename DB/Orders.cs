@@ -62,7 +62,7 @@ namespace foodsDesktop.DB
             switch (type)
             {
                 case "select":
-                    commandText = "select order_id, expense_id, just_id, `type`, `count`, `status`, refuse, deleted, notificate from orders";
+                    commandText = "select order_id, expense_id, just_id, `type`, `count`, `status`, refuse, deleted, notificate from orders where status = 1";
                     break;
                 case "update":
                     commandText = "update orders set expense_id= @expense_id, just_id=@just_id, `type`=@type, `count`=@count, `status`=@status, refuse=@refuse, deleted=@deleted, notificate=@notificate where order_id=@orderID";
@@ -85,6 +85,7 @@ namespace foodsDesktop.DB
             OrdersAdapter.InsertCommand = CreateCommand(new MySqlCommand(), "insert");
             OrdersAdapter.UpdateCommand = CreateCommand(new MySqlCommand(), "update");
             OrdersAdapter.DeleteCommand = CreateCommand(new MySqlCommand(), "delete");
+            
 
 
         }

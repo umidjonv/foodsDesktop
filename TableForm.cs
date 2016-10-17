@@ -25,15 +25,19 @@ namespace foodsDesktop
         private void Tables()
         {
             DataTable tables = DBclass.DS.Tables["tables"];
-            foreach (DataRow dr in tables.Rows)
+            if(tablesLayoutPanel.Controls.Count==0)
             {
-                Button btn = new Button();
-                btn.Width = 200;
-                btn.Height = 140;
-                btn.Text = "Стол "+dr["table_num"].ToString();
-                tablesLayoutPanel.Controls.Add(btn);
-                btn.Click += btn_Click;
+                foreach (DataRow dr in tables.Rows)
+                {
+                    Button btn = new Button();
+                    btn.Width = 200;
+                    btn.Height = 140;
+                    btn.Text = "Стол " + dr["table_num"].ToString();
+                    tablesLayoutPanel.Controls.Add(btn);
+                    btn.Click += btn_Click;
+                }
             }
+            
         }
 
         void btn_Click(object sender, EventArgs e)

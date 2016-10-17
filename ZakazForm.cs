@@ -248,7 +248,7 @@ namespace foodsDesktop
             DataTable dtable = (DataTable)dgvSchet.DataSource;
             foreach (DataRow drOrders in dtable.Rows)
             {
-                DataRow[] oRows = orders.Select("expense_id = "+id);
+                DataRow[] oRows = orders.Select("expense_id = " + id+" and just_id="+drOrders["just_id"]);
                 if (oRows.Length != 0)
                 {
                     
@@ -259,26 +259,22 @@ namespace foodsDesktop
                     oRowNew["expense_id"] = id;
                     oRowNew["just_id"] = drOrders["just_id"];
                     oRowNew["type"] = drOrders["type"];
-                    oRowNew["employee_id"] = id;
+                    oRowNew["employee_id"] = UserValues.CurrentUserID;
                     oRowNew["count"] = drOrders["count"];
-                    oRowNew["status"] = 0;
+                    oRowNew["status"] = 1;
                     oRowNew["count"] = drOrders["count"];
                     oRowNew["refuse"] = 0;
                     oRowNew["deleted"] = 0;
                     oRowNew["notificate"] = 0;
                     orders.Rows.Add(oRowNew);
-
-                    //this.Columns.Add(new DataColumn("employee_id", typeof(int)));
-                    //this.Columns.Add(new DataColumn("just_id", typeof(int)));
-                    //this.Columns.Add(new DataColumn("type", typeof(int)));
-                    //this.Columns.Add(new DataColumn("count", typeof(int)));
-                    //this.Columns.Add(new DataColumn("status", typeof(int)));
-                    //this.Columns.Add(new DataColumn("refuse", typeof(int)));
-                    //this.Columns.Add(new DataColumn("deleted", typeof(int)));
-                    //this.Columns.Add(new DataColumn("notificate", typeof(int)));
+                    
+                    
                 }
                 
             }
+            DB.UIDOrders(id);
+            Program.window_type = 1;
+            this.Close();
             //this.Columns.Add(new DataColumn("order_date", typeof(DateTime)));
             //this.Columns.Add(new DataColumn("employee_id", typeof(int)));
             //this.Columns.Add(new DataColumn("table", typeof(int)));

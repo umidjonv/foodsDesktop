@@ -27,6 +27,7 @@ namespace foodsDesktop.Classes
         public DBclass(string name)
         {
             connection = new MySqlConnection("server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True");
+            //server=MYSQL5011.SmarterASP.NET;user id=a11a35_foods;database=db_a11a35_foods;password=Azizbek@1989;persistsecurityinfo=True;
             string[] tables = { "employee", "dishes", "halfstaff", "products" };
             if (DS == null)
                 DS = new DataSet();
@@ -36,7 +37,12 @@ namespace foodsDesktop.Classes
         public void Fill(string table_name)
         {
             adapter = new MySqlDataAdapter("select * from " + table_name, connection);
-            adapter.Fill(DS, table_name);
+            DataTable dt = new DataTable(table_name);
+            adapter.Fill(dt);
+            if (!DS.Tables.Contains(table_name))
+            {
+                DS.Tables.Add(dt); 
+            }
 
             
         }
@@ -61,6 +67,7 @@ namespace foodsDesktop.Classes
         public void CreateExpenseTable()
         {
             DB.ExpenseDB exp = new DB.ExpenseDB(connection);
+            if(!DS.Tables.Contains("expense"))
             DS.Tables.Add(exp.expenseTable);
             
             //table.Columns.Add(new DataColumn(""))
@@ -69,6 +76,7 @@ namespace foodsDesktop.Classes
         public void CreateOrdersTable()
         {
             DB.OrdersDB ord = new DB.OrdersDB(connection);
+            if (!DS.Tables.Contains("orders"))
             DS.Tables.Add(ord.OrdersTable);
 
             //table.Columns.Add(new DataColumn(""))
@@ -98,11 +106,21 @@ namespace foodsDesktop.Classes
         /// <summary>
         /// Update insert delete orders
         /// </summary>
-        public void UIDOrders()
+        public void UIDOrders(int exp)
         {
+            
             DB.OrdersDB ord = new DB.OrdersDB(connection);
             ord.OrdersTable = (DB.OrdersDB.Orders)DS.Tables["orders"];
+            
             ord.OrdersAdapter.Update(ord.OrdersTable);
+            ord.OrdersTable.AcceptChanges();
+            DataRow[] rows = ord.OrdersTable.Select("expense_id = " + exp);
+            foreach(DataRow dr in rows)
+            ord.OrdersTable.Rows.Remove(dr);
+            
+            ord.OrdersAdapter.SelectCommand.CommandText = "select order_id, expense_id, just_id, `type`, `count`, `status`, refuse, deleted, notificate from orders where expense_id = "+exp;
+            ord.OrdersAdapter.Fill(ord.OrdersTable);
+            
         }
         
         
