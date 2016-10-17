@@ -239,7 +239,7 @@ namespace foodsDesktop
             dr["order_date"] = DateTime.Now;
             dr["employee_id"] = UserValues.CurrentUserID;
             dr["table"] = UserValues.CurrentTable;
-            dr["status"] = 0;
+            dr["status"] = 1;
             dr["deleted"] = 0;
 
             exp.Rows.Add(dr);
