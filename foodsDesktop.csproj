@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Classes\Authorize.cs" />
     <Compile Include="Classes\DBclass.cs" />
+    <Compile Include="Classes\DishProdHstuf.cs" />
     <Compile Include="Classes\PanelExtend.cs">
       <SubType>Component</SubType>
     </Compile>

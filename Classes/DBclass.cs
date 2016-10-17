@@ -42,7 +42,7 @@ namespace foodsDesktop.Classes
         }
         public void FillMenu_Dishes() 
         {
-            string select_text = "select ds.dish_id, d.type_id, d.name, ds.name as dishname, ds.price "+ 
+            string select_text = "select ds.dish_id, d.type_id, m.type,  d.name, ds.name as dishname, ds.price "+ 
                                 "from dishtype as d inner join menu as m "+
                                 "on d.type_id = m.type_id "+
                                 "inner join dishes as ds "+
@@ -77,7 +77,8 @@ namespace foodsDesktop.Classes
         /// <summary>
         /// Update insert delete expense
         /// </summary>
-        public void UIDExpense()
+        /// <returns>Last ID was inserted</returns>
+        public int UIDExpense()
         {
             DB.ExpenseDB exp = new DB.ExpenseDB(connection);
             exp.expenseTable = (DB.ExpenseDB.Expense) DS.Tables["expense"];
@@ -87,14 +88,11 @@ namespace foodsDesktop.Classes
             command.CommandText = "select max(expense_id) from expense";
             command.Connection.Open();
             int id = (int)command.ExecuteScalar();
-            DataTable orders =  DS.Tables["orders"];
-            DataRow[] drOrders = orders.Select("expense_id=0");
-            foreach(DataRow dr in drOrders)
-            {
-                dr["expense_id"] = id;
-            }
+            
+            
             if (command.Connection.State == ConnectionState.Open)
                 command.Connection.Close();
+            return id;
         }
 
         /// <summary>

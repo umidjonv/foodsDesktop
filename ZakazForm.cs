@@ -23,7 +23,7 @@ namespace foodsDesktop
             table.Columns.Add("order_id", typeof(int));
             table.Columns.Add("just_id", typeof(int));
             table.Columns.Add("NameTovar");
-
+            table.Columns.Add("type");
             table.Columns.Add("count", typeof(int));
             table.Columns.Add("price", typeof(int));
             table.Columns.Add("summaOne", typeof(decimal), "count*price");
@@ -148,11 +148,12 @@ namespace foodsDesktop
                 //    //tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
                     
                 //}
-                PanelExtend panel = new PanelExtend((int)dr["dish_id"], dr["dishname"].ToString(), dr["price"].ToString());
+                PanelExtend panel = new PanelExtend((int)dr["dish_id"], dr["dishname"].ToString(), (dr["price"]!=DBNull.Value?((float)dr["price"]):0), (int)dr["type"]);
                 panel.Dock = DockStyle.None;
                 panel.Width = 170;
                 panel.Height = 170;
                 panel.PanelButton.Click+=Dish_Click;
+                //panel.Tag = dr["type"];
                 tablePanelDishes.Controls.Add(panel);
                 i++;
  
@@ -173,6 +174,7 @@ namespace foodsDesktop
 
             dgvSchet.Columns["just_id"].Visible = false;
             dgvSchet.Columns["summaOne"].Visible = false;
+            dgvSchet.Columns["type"].Visible = false;
             dgvSchet.Columns["order_id"].Width = 30;
             dgvSchet.Columns["NameTovar"].Width = 200;
             dgvSchet.Columns["count"].Width = 30;
@@ -193,7 +195,8 @@ namespace foodsDesktop
         {
             
             Button eve = sender as Button;
-            int id = (int)eve.Parent.Tag;
+            DishProdHstuf dph = (DishProdHstuf)eve.Parent.Tag;
+            int id = dph.ID;
             DataTable table = dgvSchet.DataSource as DataTable;
             DataRow[] drs = table.Select("just_id = " + id);
             if (drs.Length != 0)
@@ -206,6 +209,7 @@ namespace foodsDesktop
                 DataRow drNew = table.NewRow();
                 drNew["NameTovar"] = eve.Text;
                 drNew["just_id"] = id;
+                drNew["type"] = dph.type;
                 PanelExtend panel = eve.Parent as PanelExtend;
                 drNew["price"] = panel.PanelLabel.Text;
                 drNew["count"] = 1;
@@ -239,8 +243,42 @@ namespace foodsDesktop
             dr["deleted"] = 0;
 
             exp.Rows.Add(dr);
+            
+            int id = DB.UIDExpense();
+            DataTable dtable = (DataTable)dgvSchet.DataSource;
+            foreach (DataRow drOrders in dtable.Rows)
+            {
+                DataRow[] oRows = orders.Select("expense_id = "+id);
+                if (oRows.Length != 0)
+                {
+                    
+                }
+                else
+                {
+                    DataRow oRowNew = orders.NewRow();
+                    oRowNew["expense_id"] = id;
+                    oRowNew["just_id"] = drOrders["just_id"];
+                    oRowNew["type"] = drOrders["type"];
+                    oRowNew["employee_id"] = id;
+                    oRowNew["count"] = drOrders["count"];
+                    oRowNew["status"] = 0;
+                    oRowNew["count"] = drOrders["count"];
+                    oRowNew["refuse"] = 0;
+                    oRowNew["deleted"] = 0;
+                    oRowNew["notificate"] = 0;
+                    orders.Rows.Add(oRowNew);
 
-            DB.UIDExpense();
+                    //this.Columns.Add(new DataColumn("employee_id", typeof(int)));
+                    //this.Columns.Add(new DataColumn("just_id", typeof(int)));
+                    //this.Columns.Add(new DataColumn("type", typeof(int)));
+                    //this.Columns.Add(new DataColumn("count", typeof(int)));
+                    //this.Columns.Add(new DataColumn("status", typeof(int)));
+                    //this.Columns.Add(new DataColumn("refuse", typeof(int)));
+                    //this.Columns.Add(new DataColumn("deleted", typeof(int)));
+                    //this.Columns.Add(new DataColumn("notificate", typeof(int)));
+                }
+                
+            }
             //this.Columns.Add(new DataColumn("order_date", typeof(DateTime)));
             //this.Columns.Add(new DataColumn("employee_id", typeof(int)));
             //this.Columns.Add(new DataColumn("table", typeof(int)));

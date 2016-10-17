@@ -16,12 +16,18 @@ namespace foodsDesktop.Classes
             this.Refresh();
             lbl.Location = new System.Drawing.Point(this.Width - 110, this.Height / 3 * 2);
         }
-        public PanelExtend(int id, string btnText, string labelText)
+        public PanelExtend(int id, string btnText, float labelText, int type)
         {
-            this.Tag = id;
+            var dph = new DishProdHstuf();
+            dph.ID = id;
+            dph.Name = btnText;
+            dph.price = labelText;
+            dph.type = type;
+
+            this.Tag = dph;
             InitializeComponents(); 
             btn.Text = btnText;
-            lbl.Text = labelText;
+            lbl.Text = labelText.ToString();
             this.Refresh();
             lbl.Location = new System.Drawing.Point(this.Width-110, this.Height / 3 * 2);
 
