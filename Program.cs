@@ -44,6 +44,7 @@ namespace foodsDesktop
         public static string CurrentUser;
         public static int CurrentUserID;
         public static int CurrentTable;
+        public static int expense_id;
         
     }
 }

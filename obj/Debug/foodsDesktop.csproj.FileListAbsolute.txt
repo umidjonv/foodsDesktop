@@ -15,7 +15,9 @@ E:\projects\foodsDesktop\obj\Debug\foodsDesktop.csprojResolveAssemblyReference.c
 E:\projects\foodsDesktop\obj\Debug\foodsDesktop.LoginForm.resources
 E:\projects\foodsDesktop\obj\Debug\foodsDesktop.Properties.Resources.resources
 E:\projects\foodsDesktop\obj\Debug\foodsDesktop.csproj.GenerateResource.Cache
-E:\projects\foodsDesktop\obj\Debug\foodsDesktop.KassaForm.resources
 C:\Users\user1\Documents\Visual Studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.ZakazForm.resources
 C:\Users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.TableForm.resources
 C:\Users\user1\Documents\Visual Studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.csprojResolveAssemblyReference.cache
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.TableForm.resources
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.ZakazForm.resources
+E:\projects\foodsDesktop\obj\Debug\foodsDesktop.LoginForm_O.resources

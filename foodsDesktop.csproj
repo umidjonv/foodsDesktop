@@ -91,6 +91,12 @@
     <Compile Include="ZakazForm.Designer.cs">
       <DependentUpon>ZakazForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginForm_O.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm_O.Designer.cs">
+      <DependentUpon>LoginForm_O.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="TableForm.resx">
       <DependentUpon>TableForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +115,9 @@
     </Compile>
     <EmbeddedResource Include="ZakazForm.resx">
       <DependentUpon>ZakazForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm_O.resx">
+      <DependentUpon>LoginForm_O.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>

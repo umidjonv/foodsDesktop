@@ -41,10 +41,31 @@ namespace foodsDesktop.Classes
             adapter.Fill(dt);
             if (!DS.Tables.Contains(table_name))
             {
-                DS.Tables.Add(dt); 
+                DS.Tables.Add(dt);
             }
+            //else
+            //{
+            //    DS.Tables.Remove(table_name);
+            //    DS.Tables.Add(table_name);
+            //}
 
             
+        }
+
+        public void FillExpense()
+        {
+            adapter = new MySqlDataAdapter("select * from expense where `status` = 1", connection);
+            DataTable dt =  DS.Tables["expense"];
+            
+            adapter.Fill(dt); 
+        }
+        public void FillOrders(int expense_id)
+        {
+            adapter = new MySqlDataAdapter("select * from orders where expense_id = "+expense_id, connection);
+            DataTable dt = DS.Tables["expense"];
+
+            adapter.Fill(dt); 
+ 
         }
         public void FillMenu_Dishes() 
         {

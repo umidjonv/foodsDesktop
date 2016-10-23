@@ -19,6 +19,8 @@ namespace foodsDesktop
         public ZakazForm()
         {
             InitializeComponent();
+
+            UserValues.expense_id = -1;
             DataTable table = new DataTable();
             table.Columns.Add("order_id", typeof(int));
             table.Columns.Add("just_id", typeof(int));
@@ -111,7 +113,35 @@ namespace foodsDesktop
             // Generate view for all dishes with their categories
             DB.FillMenu_Dishes();
 
-            
+            ExpenseDB.Expense exp = (ExpenseDB.Expense)DBclass.DS.Tables["expense"];
+            DataRow[] existRow = exp.Select("employee_id = "+UserValues.CurrentUserID+" and table="+UserValues.CurrentTable);
+
+            if (existRow.Length > 0)
+            {
+                DB.FillOrders((int)existRow[0]["expense_id"]);
+                DataTable dtOrders = DBclass.DS.Tables["orders"];
+                foreach (DataRow dr in dtOrders.Rows)
+                {
+                    DataRow drT = table.NewRow();
+                    drT["just_id"] = dr["just_id"];
+                    //drT["expense_id"] = dr["expense_id"];
+                    drT["type"] = dr["type"];
+                    drT["count"] = dr["count"];
+
+                    var results = (from myRow in DBclass.DS.Tables["menu_dishes_v"].AsEnumerable()
+                                   where myRow.Field<int>("dish_id") == (int)dr["just_id"]
+                                   select myRow).FirstOrDefault();
+                    drT["NameTovar"] = results["dishname"];
+                    drT["price"] = results["price"];
+
+                    //results[""]
+                    //var user = (from u in dc.Users
+                    //            where u.UserName == usn
+                    //            select u).FirstOrDefault();
+                    table.Rows.Add(drT);
+                }
+                UserValues.expense_id = (int)existRow[0]["expense_id"];
+            }
         }
         DBclass DB;
         int dish_col_count;
@@ -235,23 +265,37 @@ namespace foodsDesktop
         {
             OrdersDB.Orders orders = (OrdersDB.Orders)DBclass.DS.Tables["orders"];
             ExpenseDB.Expense exp = (ExpenseDB.Expense)DBclass.DS.Tables["expense"];
-            DataRow dr = exp.NewRow();
-            dr["order_date"] = DateTime.Now;
-            dr["employee_id"] = UserValues.CurrentUserID;
-            dr["table"] = UserValues.CurrentTable;
-            dr["status"] = 1;
-            dr["deleted"] = 0;
-
-            exp.Rows.Add(dr);
-            
-            int id = DB.UIDExpense();
             DataTable dtable = (DataTable)dgvSchet.DataSource;
+            
+            int id = 0;
+            if (UserValues.expense_id == -1)
+            {
+                DataRow dr = exp.NewRow();
+                dr["order_date"] = DateTime.Now;
+                dr["employee_id"] = UserValues.CurrentUserID;
+                dr["table"] = UserValues.CurrentTable;
+                dr["status"] = 1;
+                dr["deleted"] = 0;
+
+                exp.Rows.Add(dr);
+
+                id = DB.UIDExpense();
+            }
+            else
+            {
+                id = UserValues.expense_id; 
+            }
+
+           
+            
             foreach (DataRow drOrders in dtable.Rows)
             {
                 DataRow[] oRows = orders.Select("expense_id = " + id+" and just_id="+drOrders["just_id"]);
                 if (oRows.Length != 0)
                 {
-                    
+                    oRows[0]["count"] = drOrders["count"];
+
+
                 }
                 else
                 {

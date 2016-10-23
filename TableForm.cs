@@ -46,6 +46,8 @@ namespace foodsDesktop
             this.Close();
             string numberTable = (sender as Button).Text.Replace("Стол ", "");
             UserValues.CurrentTable = Convert.ToInt32(numberTable);
+            DBclass.DS.Tables["expense"].Rows.Clear();
+            db.FillExpense();
         }
     }
 }
