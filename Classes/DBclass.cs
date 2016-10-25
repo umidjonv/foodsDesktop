@@ -24,16 +24,22 @@ namespace foodsDesktop.Classes
         //    foreach(string tableName in tables)
         //    Fill(tableName);
         //}
+        string conStr = "server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True";
         public DBclass(string name)
         {
-            connection = new MySqlConnection("server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True");
+            connection = new MySqlConnection(conStr);
             //server=MYSQL5011.SmarterASP.NET;user id=a11a35_foods;database=db_a11a35_foods;password=Azizbek@1989;persistsecurityinfo=True;
             string[] tables = { "employee", "dishes", "halfstaff", "products" };
             if (DS == null)
                 DS = new DataSet();
             Fill(name);
         }
-
+        public DBclass()
+        {
+            connection = new MySqlConnection(conStr);
+            if (DS == null)
+                DS = new DataSet();
+        }
         public void Fill(string table_name)
         {
             adapter = new MySqlDataAdapter("select * from " + table_name, connection);
@@ -52,10 +58,21 @@ namespace foodsDesktop.Classes
             
         }
 
+
         public void FillExpense()
         {
             adapter = new MySqlDataAdapter("select * from expense where `status` = 1", connection);
-            DataTable dt =  DS.Tables["expense"];
+            DB.ExpenseDB.Expense dt;
+            if (!DS.Tables.Contains("expense"))
+            {
+                dt = new DB.ExpenseDB.Expense();
+                DS.Tables.Add(((DataTable)dt));
+            }
+            else 
+            {
+                dt = (DB.ExpenseDB.Expense)DS.Tables["expense"];
+            }
+            
             
             adapter.Fill(dt); 
         }
@@ -75,6 +92,7 @@ namespace foodsDesktop.Classes
                                 "inner join dishes as ds "+
                                 "on m.just_id = ds.dish_id";
             adapter = new MySqlDataAdapter(select_text, connection);
+            if (!DS.Tables.Contains("menu_dishes_v"))
             adapter.Fill(DS, "menu_dishes_v");
          }
 

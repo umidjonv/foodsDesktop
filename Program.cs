@@ -19,7 +19,7 @@ namespace foodsDesktop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //There must be LoginForm
-            Application.Run(new TableForm());
+            Application.Run(new LoginForm_O());
 
             while (window_type != 0)
             {

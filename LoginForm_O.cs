@@ -23,28 +23,37 @@ namespace foodsDesktop
             label2.Location = new Point(w / 2 - 175, label2.Location.Y);
             tbxLogin.Location = new Point(w / 2 - 175, tbxLogin.Location.Y);
             tbxPass.Location = new Point(w / 2 - 175, tbxPass.Location.Y);
-            btnLogin.Location = new Point(w / 2 - 175, btnLogin.Location.Y);
+            lblPassError.Location = new Point(w / 2 - 175, lblPassError.Location.Y);
             DBclass DB = new Classes.DBclass("employee");
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            DataTable table =  DBclass.DS.Tables["employee"];
+            lblPassError.Visible = false;
+            DataTable table = DBclass.DS.Tables["employee"];
             string hash = CalculateMD5Hash(tbxPass.Text);
-            DataRow[] rows = table.Select("login='"+tbxLogin.Text+"'");
+            DataRow[] rows = table.Select("role=1");
             if (rows.Length != 0)
             {
-                string pas = rows[0]["password"].ToString();
-                if (pas == hash)
+                foreach (DataRow dr in rows)
                 {
-                    Program.window_type = 1;
-                    UserValues.CurrentUserID = Convert.ToInt32(rows[0]["employee_id"]);
-                    this.Close();
-                    return;
+                    string pas = dr["password"].ToString();
+                    if (pas == hash)
+                    {
+                        Program.window_type = 1;
+                        UserValues.CurrentUserID = Convert.ToInt32(dr["employee_id"]);
+                        UserValues.CurrentUser = dr["name"].ToString();
+                        DBclass db = new DBclass();
+                        db.FillExpense();
+                        this.Close();
+                        return;
+                    }
                 }
+                
 
             }
-            MessageBox.Show("Логин или пароль не правильный", "Ошибка входа...", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            lblPassError.Visible = true;
             
         }
         public string CalculateMD5Hash(string input)
@@ -78,6 +87,11 @@ namespace foodsDesktop
  
             }
 
+        }
+
+        private void tbxPass_TextChanged(object sender, EventArgs e)
+        {
+            
         }
 
     }
