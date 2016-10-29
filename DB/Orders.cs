@@ -30,6 +30,7 @@ namespace foodsDesktop.DB
                 this.Columns[0].AutoIncrement = true;
                 this.Columns[0].AutoIncrementSeed = 1;
                 this.Columns[0].AutoIncrementStep = 1;
+                this.Columns[0].Unique = true;
             }
 
 

@@ -33,6 +33,10 @@ namespace foodsDesktop
                         Application.Run(new ZakazForm());
                         if (window_type == 2) window_type = 0;
                         break;
+                    case 3:
+                        Application.Run(new LoginForm_O());
+                        if (window_type == 3) window_type = 0;
+                        break;
                     case 0:
                         break;
                 }

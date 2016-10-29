@@ -61,7 +61,7 @@ namespace foodsDesktop.Classes
 
         public void FillExpense()
         {
-            adapter = new MySqlDataAdapter("select * from expense where `status` = 1", connection);
+            adapter = new MySqlDataAdapter("select * from expense where `status` = 1 and (expense.order_date > concat(date(now()), ' 00-00-00') and order_date < now())", connection);
             DB.ExpenseDB.Expense dt;
             if (!DS.Tables.Contains("expense"))
             {
@@ -79,10 +79,12 @@ namespace foodsDesktop.Classes
         public void FillOrders(int expense_id)
         {
             adapter = new MySqlDataAdapter("select * from orders where expense_id = "+expense_id, connection);
-            DataTable dt = DS.Tables["expense"];
-
+            DB.OrdersDB.Orders dt = (DB.OrdersDB.Orders)DS.Tables["orders"];
+            dt.PrimaryKey = new DataColumn[1]{ dt.Columns[0] };
+            //adapter.FillLoadOption = LoadOption.OverwriteChanges;
             adapter.Fill(dt); 
  
+
         }
         public void FillMenu_Dishes() 
         {

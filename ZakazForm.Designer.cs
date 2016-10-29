@@ -46,6 +46,7 @@
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnTables = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,19 +61,21 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.btnSchet);
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel1.Controls.Add(this.gbxStolNumber);
             this.splitContainer1.Panel1.Controls.Add(this.gbxSchet);
             this.splitContainer1.Panel1.Font = new System.Drawing.Font("PT Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.panelDishes);
             this.splitContainer1.Panel2.Controls.Add(this.panelTab);
             this.splitContainer1.Panel2.Controls.Add(this.btnLeft);
@@ -84,10 +87,10 @@
             // 
             // btnSchet
             // 
-            this.btnSchet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSchet.Location = new System.Drawing.Point(12, 660);
+            this.btnSchet.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSchet.Location = new System.Drawing.Point(3, 461);
             this.btnSchet.Name = "btnSchet";
-            this.btnSchet.Size = new System.Drawing.Size(329, 41);
+            this.btnSchet.Size = new System.Drawing.Size(344, 61);
             this.btnSchet.TabIndex = 2;
             this.btnSchet.Text = "Оформить счёт";
             this.btnSchet.UseVisualStyleBackColor = true;
@@ -95,6 +98,7 @@
             // 
             // gbxStolNumber
             // 
+            this.gbxStolNumber.Controls.Add(this.btnTables);
             this.gbxStolNumber.Controls.Add(this.label2);
             this.gbxStolNumber.Controls.Add(this.label1);
             this.gbxStolNumber.Controls.Add(this.lblSumma);
@@ -144,25 +148,31 @@
             // 
             // gbxSchet
             // 
+            this.gbxSchet.Controls.Add(this.btnSchet);
             this.gbxSchet.Controls.Add(this.dgvSchet);
-            this.gbxSchet.Location = new System.Drawing.Point(3, 145);
+            this.gbxSchet.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gbxSchet.Location = new System.Drawing.Point(0, 196);
             this.gbxSchet.Name = "gbxSchet";
-            this.gbxSchet.Size = new System.Drawing.Size(338, 525);
+            this.gbxSchet.Size = new System.Drawing.Size(350, 525);
             this.gbxSchet.TabIndex = 0;
             this.gbxSchet.TabStop = false;
             this.gbxSchet.Text = "Счёт";
             // 
             // dgvSchet
             // 
+            this.dgvSchet.AllowUserToAddRows = false;
             this.dgvSchet.AllowUserToResizeColumns = false;
             this.dgvSchet.AllowUserToResizeRows = false;
             this.dgvSchet.BackgroundColor = System.Drawing.Color.PaleTurquoise;
             this.dgvSchet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSchet.Location = new System.Drawing.Point(9, 33);
+            this.dgvSchet.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgvSchet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvSchet.Location = new System.Drawing.Point(3, 21);
+            this.dgvSchet.MultiSelect = false;
             this.dgvSchet.Name = "dgvSchet";
             this.dgvSchet.RowHeadersVisible = false;
             this.dgvSchet.RowTemplate.Height = 24;
-            this.dgvSchet.Size = new System.Drawing.Size(329, 476);
+            this.dgvSchet.Size = new System.Drawing.Size(344, 434);
             this.dgvSchet.TabIndex = 0;
             // 
             // panelDishes
@@ -225,7 +235,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(788, 126);
+            this.tabPage2.Size = new System.Drawing.Size(788, 115);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -259,6 +269,16 @@
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "Поиск";
             this.btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // btnTables
+            // 
+            this.btnTables.Location = new System.Drawing.Point(216, -5);
+            this.btnTables.Name = "btnTables";
+            this.btnTables.Size = new System.Drawing.Size(113, 36);
+            this.btnTables.TabIndex = 5;
+            this.btnTables.Text = "Назад";
+            this.btnTables.UseVisualStyleBackColor = true;
+            this.btnTables.Click += new System.EventHandler(this.btnTables_Click);
             // 
             // ZakazForm
             // 
@@ -308,6 +328,7 @@
         private System.Windows.Forms.Button btnSchet;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnTables;
 
     }
 }

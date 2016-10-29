@@ -20,6 +20,8 @@ namespace foodsDesktop
             Tables();
             db.CreateExpenseTable();
             db.CreateOrdersTable();
+            DBclass.DS.Tables["expense"].Rows.Clear();
+            db.FillExpense();
         }
         DBclass db;
         private void Tables()

@@ -120,7 +120,7 @@ namespace foodsDesktop
             {
                 DB.FillOrders((int)existRow[0]["expense_id"]);
                 DataTable dtOrders = DBclass.DS.Tables["orders"];
-                foreach (DataRow dr in dtOrders.Rows)
+                foreach (DataRow dr in dtOrders.Select("expense_id = " + existRow[0]["expense_id"].ToString()))
                 {
                     DataRow drT = table.NewRow();
                     drT["just_id"] = dr["just_id"];
@@ -317,7 +317,7 @@ namespace foodsDesktop
                 
             }
             DB.UIDOrders(id);
-            Program.window_type = 1;
+            Program.window_type = 3;
             this.Close();
             //this.Columns.Add(new DataColumn("order_date", typeof(DateTime)));
             //this.Columns.Add(new DataColumn("employee_id", typeof(int)));
@@ -325,6 +325,12 @@ namespace foodsDesktop
             //this.Columns.Add(new DataColumn("status", typeof(int)));
             //this.Columns.Add(new DataColumn("deleted", typeof(int)));
             
+        }
+
+        private void btnTables_Click(object sender, EventArgs e)
+        {
+            Program.window_type = 3;
+            this.Close();
         }
         
 
