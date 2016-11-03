@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnSchet = new System.Windows.Forms.Button();
             this.gbxStolNumber = new System.Windows.Forms.GroupBox();
+            this.btnTables = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSumma = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.gbxSchet = new System.Windows.Forms.GroupBox();
+            this.btnSchet = new System.Windows.Forms.Button();
             this.dgvSchet = new System.Windows.Forms.DataGridView();
             this.panelDishes = new System.Windows.Forms.Panel();
             this.tablePanelDishes = new System.Windows.Forms.FlowLayoutPanel();
@@ -46,7 +47,6 @@
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnTables = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,17 +85,6 @@
             this.splitContainer1.SplitterDistance = 350;
             this.splitContainer1.TabIndex = 0;
             // 
-            // btnSchet
-            // 
-            this.btnSchet.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnSchet.Location = new System.Drawing.Point(3, 461);
-            this.btnSchet.Name = "btnSchet";
-            this.btnSchet.Size = new System.Drawing.Size(344, 61);
-            this.btnSchet.TabIndex = 2;
-            this.btnSchet.Text = "Оформить счёт";
-            this.btnSchet.UseVisualStyleBackColor = true;
-            this.btnSchet.Click += new System.EventHandler(this.btnSchet_Click);
-            // 
             // gbxStolNumber
             // 
             this.gbxStolNumber.Controls.Add(this.btnTables);
@@ -109,6 +98,16 @@
             this.gbxStolNumber.TabIndex = 1;
             this.gbxStolNumber.TabStop = false;
             this.gbxStolNumber.Text = "Стол № ";
+            // 
+            // btnTables
+            // 
+            this.btnTables.Location = new System.Drawing.Point(216, -5);
+            this.btnTables.Name = "btnTables";
+            this.btnTables.Size = new System.Drawing.Size(113, 36);
+            this.btnTables.TabIndex = 5;
+            this.btnTables.Text = "Назад";
+            this.btnTables.UseVisualStyleBackColor = true;
+            this.btnTables.Click += new System.EventHandler(this.btnTables_Click);
             // 
             // label2
             // 
@@ -158,6 +157,17 @@
             this.gbxSchet.TabStop = false;
             this.gbxSchet.Text = "Счёт";
             // 
+            // btnSchet
+            // 
+            this.btnSchet.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSchet.Location = new System.Drawing.Point(3, 461);
+            this.btnSchet.Name = "btnSchet";
+            this.btnSchet.Size = new System.Drawing.Size(344, 61);
+            this.btnSchet.TabIndex = 2;
+            this.btnSchet.Text = "Оформить счёт";
+            this.btnSchet.UseVisualStyleBackColor = true;
+            this.btnSchet.Click += new System.EventHandler(this.btnSchet_Click);
+            // 
             // dgvSchet
             // 
             this.dgvSchet.AllowUserToAddRows = false;
@@ -174,6 +184,9 @@
             this.dgvSchet.RowTemplate.Height = 24;
             this.dgvSchet.Size = new System.Drawing.Size(344, 434);
             this.dgvSchet.TabIndex = 0;
+            this.dgvSchet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSchet_CellContentClick);
+            this.dgvSchet.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvSchet_CellPainting);
+            this.dgvSchet.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvSchet_RowsAdded);
             // 
             // panelDishes
             // 
@@ -235,7 +248,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(788, 115);
+            this.tabPage2.Size = new System.Drawing.Size(788, 126);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -269,16 +282,6 @@
             this.btnSearch.TabIndex = 0;
             this.btnSearch.Text = "Поиск";
             this.btnSearch.UseVisualStyleBackColor = true;
-            // 
-            // btnTables
-            // 
-            this.btnTables.Location = new System.Drawing.Point(216, -5);
-            this.btnTables.Name = "btnTables";
-            this.btnTables.Size = new System.Drawing.Size(113, 36);
-            this.btnTables.TabIndex = 5;
-            this.btnTables.Text = "Назад";
-            this.btnTables.UseVisualStyleBackColor = true;
-            this.btnTables.Click += new System.EventHandler(this.btnTables_Click);
             // 
             // ZakazForm
             // 

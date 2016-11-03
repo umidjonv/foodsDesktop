@@ -6,6 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using System.IO;
+using System.Drawing.Printing;
+using Microsoft.Win32;
+
 using foodsDesktop.Classes;
 using foodsDesktop.DB;
 
@@ -33,6 +37,8 @@ namespace foodsDesktop
             table.Columns["order_id"].AutoIncrementSeed = 1;
             table.Columns["order_id"].AutoIncrementStep = 1;
             dgvSchet.DataSource = table;
+            
+
             int w = this.Size.Width;
             int h = this.Size.Height;
             //label1.Location = new Point(w/2-175, label1.Location.Y);
@@ -206,20 +212,25 @@ namespace foodsDesktop
             dgvSchet.Columns["summaOne"].Visible = false;
             dgvSchet.Columns["type"].Visible = false;
             dgvSchet.Columns["order_id"].Width = 30;
-            dgvSchet.Columns["NameTovar"].Width = 200;
+            dgvSchet.Columns["NameTovar"].Width = 180;
             dgvSchet.Columns["count"].Width = 30;
-            dgvSchet.Columns["price"].Width = 70;
+            dgvSchet.Columns["price"].Width = 50;
             dgvSchet.Columns["order_id"].HeaderText = "№";
             dgvSchet.Columns["NameTovar"].HeaderText = "Наим.";
             dgvSchet.Columns["count"].HeaderText = "Кол.";
             dgvSchet.Columns["price"].HeaderText = "Цена";
 
-
+            DataGridViewButtonColumn cellBtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            cellBtn.HeaderText = "";
+            cellBtn.Name = "colBtn";
+            cellBtn.Width = 20;
+            dgvSchet.Columns.Add(cellBtn);
             var dtable = (DataTable)dgvSchet.DataSource;
             var query = dtable.AsEnumerable().Sum(x => x.Field<decimal>("summaOne"));
             lblSumma.Text = query.ToString();
 
 
+            
         }
         private void Dish_Click(object sender, EventArgs e)
         {
@@ -260,7 +271,7 @@ namespace foodsDesktop
             
             
         }
-
+        List<string[]> drPrintCol;
         private void btnSchet_Click(object sender, EventArgs e)
         {
             OrdersDB.Orders orders = (OrdersDB.Orders)DBclass.DS.Tables["orders"];
@@ -286,16 +297,19 @@ namespace foodsDesktop
                 id = UserValues.expense_id; 
             }
 
-           
+            drPrintCol = new List<string[]>();
+
             
             foreach (DataRow drOrders in dtable.Rows)
             {
                 DataRow[] oRows = orders.Select("expense_id = " + id+" and just_id="+drOrders["just_id"]);
                 if (oRows.Length != 0)
                 {
+                    int razcount = (int)drOrders["count"] - (int)oRows[0]["count"];
                     oRows[0]["count"] = drOrders["count"];
-
-
+                    if(razcount!=0)
+                    drPrintCol.Add(new string[] { drOrders["NameTovar"].ToString(), razcount.ToString(), drOrders["price"].ToString() });
+                    
                 }
                 else
                 {
@@ -311,12 +325,16 @@ namespace foodsDesktop
                     oRowNew["deleted"] = 0;
                     oRowNew["notificate"] = 0;
                     orders.Rows.Add(oRowNew);
-                    
-                    
+
+                    drPrintCol.Add(new string[] { drOrders["NameTovar"].ToString(), drOrders["count"].ToString(), drOrders["price"].ToString() });
                 }
                 
             }
             DB.UIDOrders(id);
+
+            if (drPrintCol.Count != 0)
+                forPrinting(drPrintCol);
+
             Program.window_type = 3;
             this.Close();
             //this.Columns.Add(new DataColumn("order_date", typeof(DateTime)));
@@ -327,10 +345,104 @@ namespace foodsDesktop
             
         }
 
+        private void forPrinting(List<string[]> data)
+        {
+            int price = 0;
+            string dataHtml = "";
+            int num = 1;
+            StreamWriter sw = new StreamWriter("tempData.htm");
+            foreach (string[] sr in data)
+            {
+                dataHtml += "<tr><td>"+num+"</td><td>"+sr[0]+"</td><td>"+ sr[1]+"</td><td>"+ sr[2]+"</td></tr>";
+                num++;
+            }
+            dataHtml = GenerateHTML(dataHtml);
+            sw.Write(dataHtml);
+            sw.Close();
+            //printing();
+            string keyName = @"Software\Microsoft\Internet Explorer\PageSetup";
+            using ( RegistryKey key = Registry.CurrentUser.OpenSubKey(keyName, true))
+            {
+                if (key != null)
+                {
+                    string old_footer = (string)key.GetValue("footer");
+                    string old_header = (string)key.GetValue("header");
+                    key.SetValue("footer", "");
+                    key.SetValue("header", "");
+
+                    WebBrowser browser = new WebBrowser();
+                    browser.DocumentText = dataHtml;
+                    browser.DocumentCompleted += browser_DocumentCompleted;
+                    browser.Print();
+
+                    key.SetValue("footer", old_footer);
+                    key.SetValue("header", old_header);
+                }
+            }
+            
+            //PrintClass cl = new PrintClass();
+            //cl.Printing();
+        }
+
+        void browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            WebBrowser browser = sender as WebBrowser;
+            browser.Print();
+        }
+        private string GenerateHTML(string dataHtml)
+        {
+            string html = "<head></head><body>"+
+                "<table>"+
+                    "<thead>"+
+                        "<tr>"+
+                            "<td>№</td>"+
+                            "<td>Заказ</td>" +
+                            "<td>Кол.</td>" +
+                            "<td>Цена</td>" +
+                        "</tr>"+
+                    "<thead>" +
+                        
+                    "<tbody>"+dataHtml+
+                    "<tbody>"+
+                "</table>"+
+                "</body>";
+            return html;
+        }
+        
+        
         private void btnTables_Click(object sender, EventArgs e)
         {
             Program.window_type = 3;
             this.Close();
+        }
+
+        private void dgvSchet_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            
+        }
+
+        private void dgvSchet_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var grid = (DataGridView)sender;
+            if (grid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            {
+                if ((int)grid.Rows[e.RowIndex].Cells["count"].Value > 0)
+                {
+                    int kol = (int)grid.Rows[e.RowIndex].Cells["count"].Value;
+                    kol--;
+                    grid.Rows[e.RowIndex].Cells["count"].Value = kol;
+                }
+            }
+        }
+
+        private void dgvSchet_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if(e.ColumnIndex==dgvSchet.Columns.Count-1 &&e.RowIndex>=0)
+            {
+                DataGridViewButtonCell dgvCell = (DataGridViewButtonCell)dgvSchet.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                dgvCell.Value = "-";
+            }
+            
         }
         
 
