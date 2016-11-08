@@ -333,7 +333,7 @@ namespace foodsDesktop
             DB.UIDOrders(id);
 
             if (drPrintCol.Count != 0)
-                forPrinting(drPrintCol);
+                forPrinting(drPrintCol, id);
 
             Program.window_type = 3;
             this.Close();
@@ -345,18 +345,22 @@ namespace foodsDesktop
             
         }
 
-        private void forPrinting(List<string[]> data)
+        private void forPrinting(List<string[]> data, int nomerZakaza)
         {
             int price = 0;
             string dataHtml = "";
             int num = 1;
             StreamWriter sw = new StreamWriter("tempData.htm");
+            decimal summa = 0;
             foreach (string[] sr in data)
             {
                 dataHtml += "<tr><td>"+num+"</td><td>"+sr[0]+"</td><td>"+ sr[1]+"</td><td>"+ sr[2]+"</td></tr>";
+                summa += decimal.Parse(sr[2]);
                 num++;
             }
+            dataHtml += "<tr><td></td><td></td><td><b>Итого:</b></td><td><b>" + summa + "</b></td></tr>";
             dataHtml = GenerateHTML(dataHtml);
+            dataHtml = "<h3>Номер заказа: " + nomerZakaza + "</h3>" + dataHtml;
             sw.Write(dataHtml);
             sw.Close();
             //printing();

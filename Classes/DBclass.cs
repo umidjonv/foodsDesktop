@@ -24,11 +24,11 @@ namespace foodsDesktop.Classes
         //    foreach(string tableName in tables)
         //    Fill(tableName);
         //}
-        string conStr = "server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True";
+        string conStr = "server=MYSQL5011.SmarterASP.NET;user id=a11a35_foods;database=db_a11a35_foods;password=Azizbek@1989;persistsecurityinfo=True";//"server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True";
         public DBclass(string name)
         {
             connection = new MySqlConnection(conStr);
-            //server=MYSQL5011.SmarterASP.NET;user id=a11a35_foods;database=db_a11a35_foods;password=Azizbek@1989;persistsecurityinfo=True;
+            
             string[] tables = { "employee", "dishes", "halfstaff", "products" };
             if (DS == null)
                 DS = new DataSet();
