@@ -350,7 +350,7 @@ namespace foodsDesktop
             int price = 0;
             string dataHtml = "";
             int num = 1;
-            StreamWriter sw = new StreamWriter("tempData.htm");
+            StreamWriter sw = new StreamWriter(System.IO.Path.GetTempPath()+"\\tempData.htm");
             decimal summa = 0;
             foreach (string[] sr in data)
             {
@@ -448,8 +448,87 @@ namespace foodsDesktop
             }
             
         }
-        
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnStopList_Click(object sender, EventArgs e)
+        {
+            OrdersDB.Orders orders = (OrdersDB.Orders)DBclass.DS.Tables["orders"];
+            ExpenseDB.Expense exp = (ExpenseDB.Expense)DBclass.DS.Tables["expense"];
+            DataTable dtable = (DataTable)dgvSchet.DataSource;
+
+            int id = 0;
+            if (UserValues.expense_id == -1)
+            {
+                DataRow dr = exp.NewRow();
+                dr["order_date"] = DateTime.Now;
+                dr["employee_id"] = UserValues.CurrentUserID;
+                dr["table"] = UserValues.CurrentTable;
+                dr["status"] = 0;
+                dr["deleted"] = 0;
+
+                exp.Rows.Add(dr);
+
+                id = DB.UIDExpense();
+            }
+            else
+            {
+                id = UserValues.expense_id;
+                DataRow[] rws = exp.Select("expense_id="+id);
+                foreach (DataRow dr in rws)
+                {
+                    dr["status"] = 0;
+ 
+                }
+            }
+
+            drPrintCol = new List<string[]>();
+
+
+            foreach (DataRow drOrders in dtable.Rows)
+            {
+                DataRow[] oRows = orders.Select("expense_id = " + id + " and just_id=" + drOrders["just_id"]);
+                if (oRows.Length != 0)
+                {
+                    int razcount = (int)drOrders["count"] - (int)oRows[0]["count"];
+                    oRows[0]["count"] = drOrders["count"];
+                    oRows[0]["status"] = 0;
+                    if (razcount != 0)
+                        drPrintCol.Add(new string[] { drOrders["NameTovar"].ToString(), razcount.ToString(), drOrders["price"].ToString() });
+
+                }
+                else
+                {
+                    DataRow oRowNew = orders.NewRow();
+                    oRowNew["expense_id"] = id;
+                    oRowNew["just_id"] = drOrders["just_id"];
+                    oRowNew["type"] = drOrders["type"];
+                    oRowNew["employee_id"] = UserValues.CurrentUserID;
+                    oRowNew["count"] = drOrders["count"];
+                    oRowNew["status"] = 0;
+                    oRowNew["count"] = drOrders["count"];
+                    oRowNew["refuse"] = 0;
+                    oRowNew["deleted"] = 0;
+                    oRowNew["notificate"] = 0;
+                    orders.Rows.Add(oRowNew);
+
+                    drPrintCol.Add(new string[] { drOrders["NameTovar"].ToString(), drOrders["count"].ToString(), drOrders["price"].ToString() });
+                }
+
+            }
+            DB.UIDOrders(id);
+            DB.UIDExpense();
+            if (drPrintCol.Count != 0)
+                forPrinting(drPrintCol, id);
+
+            Program.window_type = 3;
+            this.Close();
+        }
+        
+        
         
 
 

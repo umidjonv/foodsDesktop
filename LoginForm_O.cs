@@ -24,6 +24,7 @@ namespace foodsDesktop
             tbxLogin.Location = new Point(w / 2 - 175, tbxLogin.Location.Y);
             tbxPass.Location = new Point(w / 2 - 175, tbxPass.Location.Y);
             lblPassError.Location = new Point(w / 2 - 175, lblPassError.Location.Y);
+            btnEnter.Location = new Point(w / 2 - 175, btnEnter.Location.Y);
             DBclass DB = new Classes.DBclass("employee");
         }
 
@@ -91,7 +92,7 @@ namespace foodsDesktop
 
         private void tbxPass_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
     }

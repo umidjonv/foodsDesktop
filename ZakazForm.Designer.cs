@@ -47,6 +47,8 @@
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnStopList = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -76,18 +78,20 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer1.Panel2.Controls.Add(this.btnStopList);
+            this.splitContainer1.Panel2.Controls.Add(this.btnExit);
+            this.splitContainer1.Panel2.Controls.Add(this.btnTables);
             this.splitContainer1.Panel2.Controls.Add(this.panelDishes);
             this.splitContainer1.Panel2.Controls.Add(this.panelTab);
             this.splitContainer1.Panel2.Controls.Add(this.btnLeft);
             this.splitContainer1.Panel2.Controls.Add(this.btnRight);
             this.splitContainer1.Panel2.Controls.Add(this.btnSearch);
-            this.splitContainer1.Size = new System.Drawing.Size(1418, 721);
-            this.splitContainer1.SplitterDistance = 350;
+            this.splitContainer1.Size = new System.Drawing.Size(1006, 653);
+            this.splitContainer1.SplitterDistance = 248;
             this.splitContainer1.TabIndex = 0;
             // 
             // gbxStolNumber
             // 
-            this.gbxStolNumber.Controls.Add(this.btnTables);
             this.gbxStolNumber.Controls.Add(this.label2);
             this.gbxStolNumber.Controls.Add(this.label1);
             this.gbxStolNumber.Controls.Add(this.lblSumma);
@@ -101,9 +105,10 @@
             // 
             // btnTables
             // 
-            this.btnTables.Location = new System.Drawing.Point(216, -5);
+            this.btnTables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTables.Location = new System.Drawing.Point(7, 590);
             this.btnTables.Name = "btnTables";
-            this.btnTables.Size = new System.Drawing.Size(113, 36);
+            this.btnTables.Size = new System.Drawing.Size(139, 58);
             this.btnTables.TabIndex = 5;
             this.btnTables.Text = "Назад";
             this.btnTables.UseVisualStyleBackColor = true;
@@ -150,9 +155,9 @@
             this.gbxSchet.Controls.Add(this.btnSchet);
             this.gbxSchet.Controls.Add(this.dgvSchet);
             this.gbxSchet.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gbxSchet.Location = new System.Drawing.Point(0, 196);
+            this.gbxSchet.Location = new System.Drawing.Point(0, 128);
             this.gbxSchet.Name = "gbxSchet";
-            this.gbxSchet.Size = new System.Drawing.Size(350, 525);
+            this.gbxSchet.Size = new System.Drawing.Size(248, 525);
             this.gbxSchet.TabIndex = 0;
             this.gbxSchet.TabStop = false;
             this.gbxSchet.Text = "Счёт";
@@ -162,7 +167,7 @@
             this.btnSchet.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnSchet.Location = new System.Drawing.Point(3, 461);
             this.btnSchet.Name = "btnSchet";
-            this.btnSchet.Size = new System.Drawing.Size(344, 61);
+            this.btnSchet.Size = new System.Drawing.Size(242, 61);
             this.btnSchet.TabIndex = 2;
             this.btnSchet.Text = "Оформить счёт";
             this.btnSchet.UseVisualStyleBackColor = true;
@@ -182,7 +187,7 @@
             this.dgvSchet.Name = "dgvSchet";
             this.dgvSchet.RowHeadersVisible = false;
             this.dgvSchet.RowTemplate.Height = 24;
-            this.dgvSchet.Size = new System.Drawing.Size(344, 434);
+            this.dgvSchet.Size = new System.Drawing.Size(242, 434);
             this.dgvSchet.TabIndex = 0;
             this.dgvSchet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSchet_CellContentClick);
             this.dgvSchet.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvSchet_CellPainting);
@@ -193,22 +198,22 @@
             this.panelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelDishes.AutoScroll = true;
+            this.panelDishes.BackColor = System.Drawing.SystemColors.Control;
             this.panelDishes.Controls.Add(this.tablePanelDishes);
             this.panelDishes.Location = new System.Drawing.Point(4, 164);
             this.panelDishes.Name = "panelDishes";
-            this.panelDishes.Size = new System.Drawing.Size(1048, 557);
+            this.panelDishes.Size = new System.Drawing.Size(747, 423);
             this.panelDishes.TabIndex = 4;
             // 
             // tablePanelDishes
             // 
-            this.tablePanelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tablePanelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tablePanelDishes.AutoScroll = true;
             this.tablePanelDishes.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tablePanelDishes.Location = new System.Drawing.Point(6, 15);
+            this.tablePanelDishes.Location = new System.Drawing.Point(3, 3);
             this.tablePanelDishes.Name = "tablePanelDishes";
-            this.tablePanelDishes.Size = new System.Drawing.Size(1039, 475);
+            this.tablePanelDishes.Size = new System.Drawing.Size(741, 416);
             this.tablePanelDishes.TabIndex = 4;
             // 
             // panelTab
@@ -218,7 +223,7 @@
             this.panelTab.Controls.Add(this.tabCMenu);
             this.panelTab.Location = new System.Drawing.Point(210, 3);
             this.panelTab.Name = "panelTab";
-            this.panelTab.Size = new System.Drawing.Size(796, 155);
+            this.panelTab.Size = new System.Drawing.Size(486, 155);
             this.panelTab.TabIndex = 0;
             // 
             // tabCMenu
@@ -230,7 +235,7 @@
             this.tabCMenu.Location = new System.Drawing.Point(0, 0);
             this.tabCMenu.Name = "tabCMenu";
             this.tabCMenu.SelectedIndex = 0;
-            this.tabCMenu.Size = new System.Drawing.Size(796, 155);
+            this.tabCMenu.Size = new System.Drawing.Size(486, 155);
             this.tabCMenu.TabIndex = 3;
             // 
             // tabPage1
@@ -238,7 +243,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(788, 115);
+            this.tabPage1.Size = new System.Drawing.Size(478, 115);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -266,7 +271,7 @@
             // btnRight
             // 
             this.btnRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRight.Location = new System.Drawing.Point(1012, 6);
+            this.btnRight.Location = new System.Drawing.Point(702, 6);
             this.btnRight.Name = "btnRight";
             this.btnRight.Size = new System.Drawing.Size(49, 115);
             this.btnRight.TabIndex = 2;
@@ -283,12 +288,36 @@
             this.btnSearch.Text = "Поиск";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExit.Location = new System.Drawing.Point(155, 590);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(139, 58);
+            this.btnExit.TabIndex = 5;
+            this.btnExit.Text = "Выход";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnStopList
+            // 
+            this.btnStopList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStopList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnStopList.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStopList.Location = new System.Drawing.Point(300, 589);
+            this.btnStopList.Name = "btnStopList";
+            this.btnStopList.Size = new System.Drawing.Size(139, 58);
+            this.btnStopList.TabIndex = 5;
+            this.btnStopList.Text = "Стоп лист";
+            this.btnStopList.UseVisualStyleBackColor = false;
+            this.btnStopList.Click += new System.EventHandler(this.btnStopList_Click);
+            // 
             // ZakazForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(1418, 721);
+            this.ClientSize = new System.Drawing.Size(1006, 653);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("PT Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -332,6 +361,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTables;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnStopList;
 
     }
 }

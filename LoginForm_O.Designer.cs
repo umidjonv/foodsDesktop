@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPassError = new System.Windows.Forms.Label();
+            this.btnEnter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbxLogin
@@ -87,18 +88,30 @@
             // 
             this.lblPassError.AutoSize = true;
             this.lblPassError.ForeColor = System.Drawing.Color.Tomato;
-            this.lblPassError.Location = new System.Drawing.Point(310, 328);
+            this.lblPassError.Location = new System.Drawing.Point(310, 369);
             this.lblPassError.Name = "lblPassError";
             this.lblPassError.Size = new System.Drawing.Size(473, 27);
             this.lblPassError.TabIndex = 3;
             this.lblPassError.Text = "Ошибка входа: Логин или пароль не правильный";
             this.lblPassError.Visible = false;
             // 
+            // btnEnter
+            // 
+            this.btnEnter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEnter.Location = new System.Drawing.Point(310, 322);
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.Size = new System.Drawing.Size(350, 44);
+            this.btnEnter.TabIndex = 4;
+            this.btnEnter.Text = "Вход";
+            this.btnEnter.UseVisualStyleBackColor = true;
+            this.btnEnter.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
             // LoginForm_O
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 721);
+            this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.lblPassError);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -121,5 +134,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPassError;
+        private System.Windows.Forms.Button btnEnter;
     }
 }

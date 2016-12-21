@@ -24,7 +24,7 @@ namespace foodsDesktop.Classes
         //    foreach(string tableName in tables)
         //    Fill(tableName);
         //}
-        string conStr = "server=MYSQL5011.SmarterASP.NET;user id=a11a35_foods;database=db_a11a35_foods;password=Azizbek@1989;persistsecurityinfo=True";//"server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True";
+        string conStr = "server=80.87.201.230;user id=kafe;database=kafe;password=admin@kafe;";//"server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True";
         public DBclass(string name)
         {
             connection = new MySqlConnection(conStr);
@@ -154,7 +154,7 @@ namespace foodsDesktop.Classes
             ord.OrdersTable = (DB.OrdersDB.Orders)DS.Tables["orders"];
             
             ord.OrdersAdapter.Update(ord.OrdersTable);
-            ord.OrdersTable.AcceptChanges();
+            //ord.OrdersTable.AcceptChanges();
             DataRow[] rows = ord.OrdersTable.Select("expense_id = " + exp);
             foreach(DataRow dr in rows)
             ord.OrdersTable.Rows.Remove(dr);
