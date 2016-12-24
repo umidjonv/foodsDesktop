@@ -25,7 +25,20 @@ namespace foodsDesktop
             tbxPass.Location = new Point(w / 2 - 175, tbxPass.Location.Y);
             lblPassError.Location = new Point(w / 2 - 175, lblPassError.Location.Y);
             btnEnter.Location = new Point(w / 2 - 175, btnEnter.Location.Y);
+            btn1.Location = new Point(w / 2 - 175, btn1.Location.Y);
+            btn2.Location = new Point(w / 2 - 80, btn2.Location.Y);
+            btn3.Location = new Point(w / 2 + 15, btn3.Location.Y);
+            btn4.Location = new Point(w / 2 - 175, btn4.Location.Y);
+            btn5.Location = new Point(w / 2 - 80, btn5.Location.Y);
+            btn6.Location = new Point(w / 2 + 15, btn6.Location.Y);
+            btn7.Location = new Point(w / 2 - 175, btn7.Location.Y);
+            btn8.Location = new Point(w / 2 - 80, btn8.Location.Y);
+            btn9.Location = new Point(w / 2 + 15, btn9.Location.Y);
+            btn0.Location = new Point(w / 2 - 80, btn0.Location.Y);
+            btnDel.Location = new Point(w / 2 + 15, btnDel.Location.Y);
+
             DBclass DB = new Classes.DBclass("employee");
+            tbxPass.Focus();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -93,6 +106,20 @@ namespace foodsDesktop
         private void tbxPass_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_num(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            tbxPass.Text += btn.Text;
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            if (tbxPass.Text.Length > 0)
+            {
+                tbxPass.Text = tbxPass.Text.Remove(tbxPass.Text.Length - 1);
+            }
         }
 
     }

@@ -30,7 +30,6 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gbxStolNumber = new System.Windows.Forms.GroupBox();
-            this.btnTables = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSumma = new System.Windows.Forms.Label();
@@ -38,6 +37,9 @@
             this.gbxSchet = new System.Windows.Forms.GroupBox();
             this.btnSchet = new System.Windows.Forms.Button();
             this.dgvSchet = new System.Windows.Forms.DataGridView();
+            this.btnStopList = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnTables = new System.Windows.Forms.Button();
             this.panelDishes = new System.Windows.Forms.Panel();
             this.tablePanelDishes = new System.Windows.Forms.FlowLayoutPanel();
             this.panelTab = new System.Windows.Forms.Panel();
@@ -47,8 +49,6 @@
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnStopList = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -96,30 +96,20 @@
             this.gbxStolNumber.Controls.Add(this.label1);
             this.gbxStolNumber.Controls.Add(this.lblSumma);
             this.gbxStolNumber.Controls.Add(this.lblUser);
+            this.gbxStolNumber.Font = new System.Drawing.Font("PT Serif", 12F);
             this.gbxStolNumber.Location = new System.Drawing.Point(12, 12);
             this.gbxStolNumber.Name = "gbxStolNumber";
-            this.gbxStolNumber.Size = new System.Drawing.Size(329, 127);
+            this.gbxStolNumber.Size = new System.Drawing.Size(329, 110);
             this.gbxStolNumber.TabIndex = 1;
             this.gbxStolNumber.TabStop = false;
             this.gbxStolNumber.Text = "Стол № ";
-            // 
-            // btnTables
-            // 
-            this.btnTables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnTables.Location = new System.Drawing.Point(7, 590);
-            this.btnTables.Name = "btnTables";
-            this.btnTables.Size = new System.Drawing.Size(139, 58);
-            this.btnTables.TabIndex = 5;
-            this.btnTables.Text = "Назад";
-            this.btnTables.UseVisualStyleBackColor = true;
-            this.btnTables.Click += new System.EventHandler(this.btnTables_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 31);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 19);
+            this.label2.Size = new System.Drawing.Size(113, 22);
             this.label2.TabIndex = 7;
             this.label2.Text = "Пользователь";
             // 
@@ -128,25 +118,25 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 19);
+            this.label1.Size = new System.Drawing.Size(58, 22);
             this.label1.TabIndex = 7;
             this.label1.Text = "Сумма";
             // 
             // lblSumma
             // 
             this.lblSumma.AutoSize = true;
-            this.lblSumma.Location = new System.Drawing.Point(110, 66);
+            this.lblSumma.Location = new System.Drawing.Point(125, 66);
             this.lblSumma.Name = "lblSumma";
-            this.lblSumma.Size = new System.Drawing.Size(16, 19);
+            this.lblSumma.Size = new System.Drawing.Size(19, 22);
             this.lblSumma.TabIndex = 6;
             this.lblSumma.Text = "0";
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(110, 31);
+            this.lblUser.Location = new System.Drawing.Point(125, 31);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(36, 19);
+            this.lblUser.Size = new System.Drawing.Size(42, 22);
             this.lblUser.TabIndex = 5;
             this.lblUser.Text = "User";
             // 
@@ -155,6 +145,7 @@
             this.gbxSchet.Controls.Add(this.btnSchet);
             this.gbxSchet.Controls.Add(this.dgvSchet);
             this.gbxSchet.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gbxSchet.Font = new System.Drawing.Font("PT Serif", 10F);
             this.gbxSchet.Location = new System.Drawing.Point(0, 128);
             this.gbxSchet.Name = "gbxSchet";
             this.gbxSchet.Size = new System.Drawing.Size(248, 525);
@@ -165,6 +156,7 @@
             // btnSchet
             // 
             this.btnSchet.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnSchet.Font = new System.Drawing.Font("PT Serif", 12F);
             this.btnSchet.Location = new System.Drawing.Point(3, 461);
             this.btnSchet.Name = "btnSchet";
             this.btnSchet.Size = new System.Drawing.Size(242, 61);
@@ -193,27 +185,62 @@
             this.dgvSchet.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvSchet_CellPainting);
             this.dgvSchet.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvSchet_RowsAdded);
             // 
+            // btnStopList
+            // 
+            this.btnStopList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStopList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnStopList.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStopList.Location = new System.Drawing.Point(300, 589);
+            this.btnStopList.Name = "btnStopList";
+            this.btnStopList.Size = new System.Drawing.Size(139, 58);
+            this.btnStopList.TabIndex = 5;
+            this.btnStopList.Text = "Стоп лист";
+            this.btnStopList.UseVisualStyleBackColor = false;
+            this.btnStopList.Click += new System.EventHandler(this.btnStopList_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExit.Location = new System.Drawing.Point(155, 590);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(139, 58);
+            this.btnExit.TabIndex = 5;
+            this.btnExit.Text = "Выход";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnTables
+            // 
+            this.btnTables.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTables.Location = new System.Drawing.Point(7, 590);
+            this.btnTables.Name = "btnTables";
+            this.btnTables.Size = new System.Drawing.Size(139, 58);
+            this.btnTables.TabIndex = 5;
+            this.btnTables.Text = "Назад";
+            this.btnTables.UseVisualStyleBackColor = true;
+            this.btnTables.Click += new System.EventHandler(this.btnTables_Click);
+            // 
             // panelDishes
             // 
-            this.panelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelDishes.AutoScroll = true;
             this.panelDishes.BackColor = System.Drawing.SystemColors.Control;
             this.panelDishes.Controls.Add(this.tablePanelDishes);
-            this.panelDishes.Location = new System.Drawing.Point(4, 164);
+            this.panelDishes.Location = new System.Drawing.Point(4, 145);
             this.panelDishes.Name = "panelDishes";
-            this.panelDishes.Size = new System.Drawing.Size(747, 423);
+            this.panelDishes.Size = new System.Drawing.Size(747, 442);
             this.panelDishes.TabIndex = 4;
             // 
             // tablePanelDishes
             // 
-            this.tablePanelDishes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tablePanelDishes.AutoScroll = true;
             this.tablePanelDishes.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tablePanelDishes.Location = new System.Drawing.Point(3, 3);
+            this.tablePanelDishes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tablePanelDishes.Location = new System.Drawing.Point(0, 0);
             this.tablePanelDishes.Name = "tablePanelDishes";
-            this.tablePanelDishes.Size = new System.Drawing.Size(741, 416);
+            this.tablePanelDishes.Size = new System.Drawing.Size(747, 442);
             this.tablePanelDishes.TabIndex = 4;
             // 
             // panelTab
@@ -223,7 +250,7 @@
             this.panelTab.Controls.Add(this.tabCMenu);
             this.panelTab.Location = new System.Drawing.Point(210, 3);
             this.panelTab.Name = "panelTab";
-            this.panelTab.Size = new System.Drawing.Size(486, 155);
+            this.panelTab.Size = new System.Drawing.Size(486, 136);
             this.panelTab.TabIndex = 0;
             // 
             // tabCMenu
@@ -231,11 +258,10 @@
             this.tabCMenu.Alignment = System.Windows.Forms.TabAlignment.Bottom;
             this.tabCMenu.Controls.Add(this.tabPage1);
             this.tabCMenu.Controls.Add(this.tabPage2);
-            this.tabCMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabCMenu.Location = new System.Drawing.Point(0, 0);
             this.tabCMenu.Name = "tabCMenu";
             this.tabCMenu.SelectedIndex = 0;
-            this.tabCMenu.Size = new System.Drawing.Size(486, 155);
+            this.tabCMenu.Size = new System.Drawing.Size(486, 136);
             this.tabCMenu.TabIndex = 3;
             // 
             // tabPage1
@@ -243,7 +269,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(478, 115);
+            this.tabPage1.Size = new System.Drawing.Size(478, 101);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -253,7 +279,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(788, 126);
+            this.tabPage2.Size = new System.Drawing.Size(478, 129);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -288,33 +314,9 @@
             this.btnSearch.Text = "Поиск";
             this.btnSearch.UseVisualStyleBackColor = true;
             // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExit.Location = new System.Drawing.Point(155, 590);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(139, 58);
-            this.btnExit.TabIndex = 5;
-            this.btnExit.Text = "Выход";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnStopList
-            // 
-            this.btnStopList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnStopList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnStopList.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnStopList.Location = new System.Drawing.Point(300, 589);
-            this.btnStopList.Name = "btnStopList";
-            this.btnStopList.Size = new System.Drawing.Size(139, 58);
-            this.btnStopList.TabIndex = 5;
-            this.btnStopList.Text = "Стоп лист";
-            this.btnStopList.UseVisualStyleBackColor = false;
-            this.btnStopList.Click += new System.EventHandler(this.btnStopList_Click);
-            // 
             // ZakazForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(1006, 653);

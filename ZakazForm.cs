@@ -378,8 +378,9 @@ namespace foodsDesktop
                     browser.DocumentText = dataHtml;
                     browser.DocumentCompleted += browser_DocumentCompleted;
                     browser.Print();
-
+                    if(old_footer!=null)
                     key.SetValue("footer", old_footer);
+                    if(old_header!=null)
                     key.SetValue("header", old_header);
                 }
             }
