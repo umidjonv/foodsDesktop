@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gbxStolNumber = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -169,6 +170,14 @@
             this.dgvSchet.AllowUserToResizeColumns = false;
             this.dgvSchet.AllowUserToResizeRows = false;
             this.dgvSchet.BackgroundColor = System.Drawing.Color.PaleTurquoise;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("PT Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSchet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSchet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSchet.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvSchet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -176,7 +185,9 @@
             this.dgvSchet.MultiSelect = false;
             this.dgvSchet.Name = "dgvSchet";
             this.dgvSchet.RowHeadersVisible = false;
-            this.dgvSchet.RowTemplate.Height = 24;
+            this.dgvSchet.RowHeadersWidth = 50;
+            this.dgvSchet.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dgvSchet.RowTemplate.Height = 40;
             this.dgvSchet.Size = new System.Drawing.Size(242, 434);
             this.dgvSchet.TabIndex = 0;
             this.dgvSchet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSchet_CellContentClick);

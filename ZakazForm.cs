@@ -173,8 +173,7 @@ namespace foodsDesktop
             TablePanelDishes newPanelDishes = new TablePanelDishes();
             
             int i = 1;
-            Control[] controls = new Control[drDishes.Length];
-            int cnt = 0;
+            
             foreach (DataRow dr in drDishes)
             {
 
@@ -187,7 +186,6 @@ namespace foodsDesktop
                 //panel.Tag = dr["type"];
                 newPanelDishes.Controls.Add(panel);
                 i++;
-                cnt++;
  
             }
             newPanelDishes.Visible = true;
@@ -221,7 +219,7 @@ namespace foodsDesktop
             dgvSchet.Columns["summaOne"].Visible = false;
             dgvSchet.Columns["type"].Visible = false;
             dgvSchet.Columns["order_id"].Width = 30;
-            dgvSchet.Columns["NameTovar"].Width = 180;
+            dgvSchet.Columns["NameTovar"].Width = 160;
             dgvSchet.Columns["count"].Width = 30;
             dgvSchet.Columns["price"].Width = 50;
             dgvSchet.Columns["order_id"].HeaderText = "№";
@@ -232,7 +230,7 @@ namespace foodsDesktop
             DataGridViewButtonColumn cellBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             cellBtn.HeaderText = "";
             cellBtn.Name = "colBtn";
-            cellBtn.Width = 20;
+            cellBtn.Width = 40;
             dgvSchet.Columns.Add(cellBtn);
             var dtable = (DataTable)dgvSchet.DataSource;
             var query = dtable.AsEnumerable().Sum(x => x.Field<decimal>("summaOne"));
