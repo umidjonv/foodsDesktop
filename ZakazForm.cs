@@ -164,39 +164,48 @@ namespace foodsDesktop
         }
         private void ClickMenu(object sender, EventArgs e)
         {
-            //tablePanelDishes.Height = panelDishes.Height;
-            //tablePanelDishes.RowCount = 1;
-            tablePanelDishes.Controls.Clear();
-            //tablePanelDishes.RowStyles.Clear();
-            //tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
+            
+            
             int id = Convert.ToInt32((sender as Button).Tag);
             DataRow[] drDishes = DB.GetDishesRow(id);
 
             // TableLayoutPanel calculate size
-
+            TablePanelDishes newPanelDishes = new TablePanelDishes();
+            
             int i = 1;
+            Control[] controls = new Control[drDishes.Length];
+            int cnt = 0;
             foreach (DataRow dr in drDishes)
             {
-                //if (i > dish_col_count)
-                //{
-                //    i = 1;
-                //    //tablePanelDishes.RowCount++;
-                //    //tablePanelDishes.RowStyles.Add(new RowStyle(SizeType.Absolute, 170F));
-                    
-                //}
+
+                
                 PanelExtend panel = new PanelExtend((int)dr["dish_id"], dr["dishname"].ToString(), (dr["price"]!=DBNull.Value?((float)dr["price"]):0), (int)dr["type"]);
                 panel.Dock = DockStyle.None;
                 panel.Width = 170;
                 panel.Height = 170;
                 panel.PanelButton.Click+=Dish_Click;
                 //panel.Tag = dr["type"];
-                tablePanelDishes.Controls.Add(panel);
+                newPanelDishes.Controls.Add(panel);
                 i++;
+                cnt++;
  
             }
+            newPanelDishes.Visible = true;
+            
+            panelDishes.Controls.Add(newPanelDishes);
+            panelDishes.Controls.Remove(tablePanelDishes);
+            tablePanelDishes.Visible = false;
+            //panelDishes.Paint += panelDishes_Paint;
+            tablePanelDishes = newPanelDishes;
+            GC.Collect();
             //tablePanelDishes.Height += 100;
             //PanelExtend panel = new PanelExtend("Салат Цезарь", "7 000");
             //tablePanelDishes.Controls.Add(panel);
+        }
+
+        void panelDishes_Paint(object sender, PaintEventArgs e)
+        {
+            
         }
 
         private void ZakazForm_Load(object sender, EventArgs e)

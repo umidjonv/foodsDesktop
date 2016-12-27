@@ -24,7 +24,7 @@ namespace foodsDesktop.Classes
         //    foreach(string tableName in tables)
         //    Fill(tableName);
         //}
-        string conStr = "server=80.87.201.230;user id=kafe;database=kafe;password=admin@kafe;";//"server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True";
+        string conStr = "server=localhost;user id=foodsDB_user;password=D@faul(t);database=foods;persistsecurityinfo=True";//"server=80.87.201.230;user id=kafe;database=kafe;password=admin@kafe;";
         public DBclass(string name)
         {
             connection = new MySqlConnection(conStr);
