@@ -344,8 +344,8 @@ namespace foodsDesktop
             if (drPrintCol.Count != 0)
                 forPrinting(drPrintCol, id);
 
-            Program.window_type = 3;
-            this.Close();
+            CloseWindow();
+
             //this.Columns.Add(new DataColumn("order_date", typeof(DateTime)));
             //this.Columns.Add(new DataColumn("employee_id", typeof(int)));
             //this.Columns.Add(new DataColumn("table", typeof(int)));
@@ -353,7 +353,12 @@ namespace foodsDesktop
             //this.Columns.Add(new DataColumn("deleted", typeof(int)));
             
         }
-
+        private void CloseWindow()
+        {
+            Program.window_type = 1;
+            Program.oldWindow_type = 2;
+            Program.onClose = true;
+        }
         private void forPrinting(List<string[]> data, int nomerZakaza)
         {
             int price = 0;
@@ -426,8 +431,7 @@ namespace foodsDesktop
         
         private void btnTables_Click(object sender, EventArgs e)
         {
-            Program.window_type = 3;
-            this.Close();
+            CloseWindow();
         }
 
         private void dgvSchet_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -459,10 +463,7 @@ namespace foodsDesktop
             
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        
 
         private void btnStopList_Click(object sender, EventArgs e)
         {
@@ -534,8 +535,7 @@ namespace foodsDesktop
             if (drPrintCol.Count != 0)
                 forPrinting(drPrintCol, id);
 
-            Program.window_type = 3;
-            this.Close();
+            CloseWindow();
         }
         
         

@@ -59,7 +59,9 @@ namespace foodsDesktop
                         UserValues.CurrentUser = dr["name"].ToString();
                         DBclass db = new DBclass();
                         db.FillExpense();
-                        this.Close();
+
+                        Program.oldWindow_type = 3;
+                        Program.onClose = true;
                         return;
                     }
                 }
@@ -120,6 +122,12 @@ namespace foodsDesktop
             {
                 tbxPass.Text = tbxPass.Text.Remove(tbxPass.Text.Length - 1);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Program.onClose = true;
+            Program.window_type = 0;
         }
 
     }

@@ -9,6 +9,8 @@ namespace foodsDesktop
     static class Program
     {
         public static int window_type;
+        public static bool onClose = false;
+        public static int oldWindow_type;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -19,28 +21,9 @@ namespace foodsDesktop
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //There must be LoginForm
-            Application.Run(new LoginForm_O());
+            Application.Run(new FormMain());
 
-            while (window_type != 0)
-            {
-                switch (window_type)
-                {
-                    case 1:
-                        Application.Run(new TableForm());
-                        if(window_type ==1) window_type=0;
-                        break;
-                    case 2:
-                        Application.Run(new ZakazForm());
-                        if (window_type == 2) window_type = 0;
-                        break;
-                    case 3:
-                        Application.Run(new LoginForm_O());
-                        if (window_type == 3) window_type = 0;
-                        break;
-                    case 0:
-                        break;
-                }
-            }
+            
         }
     }
     static class UserValues

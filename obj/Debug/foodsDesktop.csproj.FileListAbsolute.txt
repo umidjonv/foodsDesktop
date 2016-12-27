@@ -22,3 +22,4 @@ E:\projects\foodsDesktop\obj\Debug\foodsDesktop.TableForm.resources
 E:\projects\foodsDesktop\obj\Debug\foodsDesktop.ZakazForm.resources
 E:\projects\foodsDesktop\obj\Debug\foodsDesktop.LoginForm_O.resources
 C:\Users\user1\documents\visual studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.LoginForm_O.resources
+C:\Users\user1\Documents\Visual Studio 2013\Projects\foodsDesktop\foodsDesktop\obj\Debug\foodsDesktop.FormMain.resources

@@ -38,7 +38,6 @@
             this.btnSchet = new System.Windows.Forms.Button();
             this.dgvSchet = new System.Windows.Forms.DataGridView();
             this.btnStopList = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
             this.btnTables = new System.Windows.Forms.Button();
             this.panelDishes = new System.Windows.Forms.Panel();
             this.tablePanelDishes = new System.Windows.Forms.FlowLayoutPanel();
@@ -79,7 +78,6 @@
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.btnStopList);
-            this.splitContainer1.Panel2.Controls.Add(this.btnExit);
             this.splitContainer1.Panel2.Controls.Add(this.btnTables);
             this.splitContainer1.Panel2.Controls.Add(this.panelDishes);
             this.splitContainer1.Panel2.Controls.Add(this.panelTab);
@@ -109,7 +107,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 31);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 22);
+            this.label2.Size = new System.Drawing.Size(140, 27);
             this.label2.TabIndex = 7;
             this.label2.Text = "Пользователь";
             // 
@@ -118,7 +116,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 22);
+            this.label1.Size = new System.Drawing.Size(74, 27);
             this.label1.TabIndex = 7;
             this.label1.Text = "Сумма";
             // 
@@ -127,7 +125,7 @@
             this.lblSumma.AutoSize = true;
             this.lblSumma.Location = new System.Drawing.Point(125, 66);
             this.lblSumma.Name = "lblSumma";
-            this.lblSumma.Size = new System.Drawing.Size(19, 22);
+            this.lblSumma.Size = new System.Drawing.Size(23, 27);
             this.lblSumma.TabIndex = 6;
             this.lblSumma.Text = "0";
             // 
@@ -136,7 +134,7 @@
             this.lblUser.AutoSize = true;
             this.lblUser.Location = new System.Drawing.Point(125, 31);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(42, 22);
+            this.lblUser.Size = new System.Drawing.Size(52, 27);
             this.lblUser.TabIndex = 5;
             this.lblUser.Text = "User";
             // 
@@ -174,7 +172,7 @@
             this.dgvSchet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSchet.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvSchet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvSchet.Location = new System.Drawing.Point(3, 21);
+            this.dgvSchet.Location = new System.Drawing.Point(3, 26);
             this.dgvSchet.MultiSelect = false;
             this.dgvSchet.Name = "dgvSchet";
             this.dgvSchet.RowHeadersVisible = false;
@@ -197,17 +195,6 @@
             this.btnStopList.Text = "Стоп лист";
             this.btnStopList.UseVisualStyleBackColor = false;
             this.btnStopList.Click += new System.EventHandler(this.btnStopList_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExit.Location = new System.Drawing.Point(155, 590);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(139, 58);
-            this.btnExit.TabIndex = 5;
-            this.btnExit.Text = "Выход";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnTables
             // 
@@ -256,6 +243,8 @@
             // tabCMenu
             // 
             this.tabCMenu.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tabCMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabCMenu.Controls.Add(this.tabPage1);
             this.tabCMenu.Controls.Add(this.tabPage2);
             this.tabCMenu.Location = new System.Drawing.Point(0, 0);
@@ -269,7 +258,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(478, 101);
+            this.tabPage1.Size = new System.Drawing.Size(478, 96);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -279,7 +268,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(478, 129);
+            this.tabPage2.Size = new System.Drawing.Size(478, 107);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -316,13 +305,16 @@
             // 
             // ZakazForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.ClientSize = new System.Drawing.Size(1006, 653);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("PT Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ZakazForm";
             this.Text = "Касса";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -363,7 +355,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTables;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnStopList;
 
     }

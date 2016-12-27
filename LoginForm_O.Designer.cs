@@ -45,6 +45,7 @@
             this.btn9 = new System.Windows.Forms.Button();
             this.btn0 = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbxLogin
@@ -54,7 +55,7 @@
             this.tbxLogin.Location = new System.Drawing.Point(314, 46);
             this.tbxLogin.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbxLogin.Name = "tbxLogin";
-            this.tbxLogin.Size = new System.Drawing.Size(350, 29);
+            this.tbxLogin.Size = new System.Drawing.Size(350, 34);
             this.tbxLogin.TabIndex = 1;
             this.tbxLogin.Visible = false;
             // 
@@ -66,7 +67,7 @@
             this.tbxPass.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbxPass.Name = "tbxPass";
             this.tbxPass.PasswordChar = '*';
-            this.tbxPass.Size = new System.Drawing.Size(282, 35);
+            this.tbxPass.Size = new System.Drawing.Size(282, 42);
             this.tbxPass.TabIndex = 2;
             this.tbxPass.TextChanged += new System.EventHandler(this.tbxPass_TextChanged);
             this.tbxPass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxPass_KeyDown);
@@ -79,7 +80,7 @@
             this.label1.Location = new System.Drawing.Point(314, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 22);
+            this.label1.Size = new System.Drawing.Size(69, 27);
             this.label1.TabIndex = 2;
             this.label1.Text = "Логин";
             this.label1.Visible = false;
@@ -92,7 +93,7 @@
             this.label2.Location = new System.Drawing.Point(345, 87);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 28);
+            this.label2.Size = new System.Drawing.Size(106, 36);
             this.label2.TabIndex = 2;
             this.label2.Text = "Пароль";
             // 
@@ -103,7 +104,7 @@
             this.lblPassError.ForeColor = System.Drawing.Color.Tomato;
             this.lblPassError.Location = new System.Drawing.Point(341, 562);
             this.lblPassError.Name = "lblPassError";
-            this.lblPassError.Size = new System.Drawing.Size(382, 22);
+            this.lblPassError.Size = new System.Drawing.Size(473, 27);
             this.lblPassError.TabIndex = 3;
             this.lblPassError.Text = "Ошибка входа: Логин или пароль не правильный";
             this.lblPassError.Visible = false;
@@ -254,12 +255,24 @@
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(904, 619);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 90);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Выход";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // LoginForm_O
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1006, 721);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btn0);
             this.Controls.Add(this.btn9);
@@ -310,5 +323,6 @@
         private System.Windows.Forms.Button btn9;
         private System.Windows.Forms.Button btn0;
         private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.Button button1;
     }
 }

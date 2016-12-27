@@ -45,11 +45,19 @@ namespace foodsDesktop
         void btn_Click(object sender, EventArgs e)
         {
             Program.window_type = 2;
-            this.Close();
+            Program.oldWindow_type = 1;
+            Program.onClose = true;
             string numberTable = (sender as Button).Text.Replace("Стол ", "");
             UserValues.CurrentTable = Convert.ToInt32(numberTable);
             DBclass.DS.Tables["expense"].Rows.Clear();
             db.FillExpense();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Program.oldWindow_type = 1;
+            Program.window_type = 3;
+            Program.onClose = true;
         }
     }
 }
