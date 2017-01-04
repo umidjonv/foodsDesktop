@@ -366,13 +366,15 @@ namespace foodsDesktop
             decimal summa = 0;
             foreach (string[] sr in data)
             {
-                dataHtml += "<tr><td>"+num+"</td><td>"+sr[0]+"</td><td>"+ sr[1]+"</td><td>"+ sr[2]+"</td></tr>";
+                dataHtml += "<tr><td>"+sr[0]+"</td><td>"+ sr[1]+"</td><td>"+ sr[2]+"</td></tr>";
                 summa += decimal.Parse(sr[2]);
                 num++;
             }
-            dataHtml += "<tr><td></td><td></td><td><b>Итого:</b></td><td><b>" + summa + "</b></td></tr>";
-            dataHtml = GenerateHTML(dataHtml);
-            dataHtml = "<h3>Номер заказа: " + nomerZakaza + "</h3>" + dataHtml;
+            dataHtml += "<tr><td><b>Итог:</b></td><td><b>" + summa + "</b></td><td></td><td></td></tr>";
+            dataHtml = GenerateHTML(dataHtml, nomerZakaza);
+            //string zakaz = "<h4>Номер заказа: " + nomerZakaza + "</h4>";
+            //string oficiant = "<h4>Официант: " + lblUser.Text + "</h4>";
+            //dataHtml = zakaz+oficiant+"<h4>Официант: " + DateTime.Now.ToString("dd.MM.YYYY HH:mm")+ "</h4>" + dataHtml;
             sw.Write(dataHtml);
             sw.Close();
             //printing();
@@ -406,13 +408,22 @@ namespace foodsDesktop
             WebBrowser browser = sender as WebBrowser;
             browser.Print();
         }
-        private string GenerateHTML(string dataHtml)
+        private string GenerateHTML(string dataHtml, int nomerZakaza)
         {
             string html = "<head></head><body>"+
                 "<table>"+
+                "<tr><td style=\"text-align:right\">Дата: </td><td>" + DateTime.Now.ToString("dd.MM.yyyy HH:mm") + "</td></tr>" +
+                "<tr><td style=\"text-align:right\">Официант: </td><td>" + lblUser.Text + "</td></tr>" +
+                "<tr><td style=\"text-align:right\">Счет №: </td><td>" + nomerZakaza + "</td></tr>" +
+                "<tr><td style=\"text-align:right\">Стол №: </td><td>" + UserValues.CurrentTable + "</td></tr>" +
+                
+                "</table><br/>"+
+                
+                 
+                "<table>"+
                     "<thead>"+
                         "<tr>"+
-                            "<td>№</td>"+
+                            
                             "<td>Заказ</td>" +
                             "<td>Кол.</td>" +
                             "<td>Цена</td>" +
